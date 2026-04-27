@@ -13,11 +13,34 @@ jest.mock('expo/src/winter/ImportMetaRegistry', () => ({
   ImportMetaRegistry: { get: jest.fn(), set: jest.fn() },
 }));
 
+// Mock Worklets
+jest.mock('react-native-worklets', () => ({
+  Worklets: {
+    createRunOnJS: (fn: any) => fn,
+    createRunOnUI: (fn: any) => fn,
+  },
+}));
+
 // Mock Reanimated
 jest.mock('react-native-reanimated', () => {
-  const Reanimated = require('react-native-reanimated/mock');
-  Reanimated.default.call = () => {};
-  return Reanimated;
+  const React = require('react');
+  return {
+    default: {
+      call: jest.fn(),
+    },
+    useSharedValue: (val: any) => ({ value: val }),
+    useAnimatedStyle: (fn: any) => fn(),
+    useDerivedValue: (fn: any) => ({ value: fn() }),
+    withTiming: (val: any) => val,
+    withRepeat: (val: any) => val,
+    withSpring: (val: any) => val,
+    Easing: {
+      linear: (t: any) => t,
+      out: (f: any) => f,
+      in: (f: any) => f,
+    },
+    createAnimatedComponent: (cb: any) => cb,
+  };
 });
 
 // Mock Skia
@@ -46,19 +69,3 @@ jest.mock('expo-haptics', () => ({
 jest.mock('@expo/vector-icons', () => ({
   Ionicons: 'Ionicons',
 }));
-
-// Mock Platform and StatusBar for Header
-jest.mock('react-native/Libraries/Utilities/Platform', () => ({
-  OS: 'ios',
-  select: jest.fn((dict) => dict.ios),
-}));
-
-jest.mock('react-native/Libraries/Components/StatusBar/StatusBar', () => ({
-  currentHeight: 44,
-}));
-
-// @ts-ignore
-global.__ExpoImportMetaRegistry = {
-  get: jest.fn(),
-  set: jest.fn(),
-};
