@@ -7,20 +7,32 @@ import {
   LayoutChangeEvent,
   ViewStyle,
 } from 'react-native';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  withRepeat,
+  Easing,
+  useDerivedValue,
+} from 'react-native-reanimated';
+import * as Haptics from 'expo-haptics';
 import {
   Canvas,
   RoundedRect,
   LinearGradient,
   vec,
-  Shadow
+  Shadow,
 } from "@shopify/react-native-skia";
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-} from 'react-native-reanimated';
-import * as Haptics from 'expo-haptics';
 import { colors, spacing, rounded, RoundedScale, buttonSizes, ButtonSize } from '../factory';
+import {
+  styles,
+  ANIMATION_DURATION,
+  BUTTON_SCALE_VALUE,
+  SHADOW_COLOR,
+  LOADING_STRIPE_COLORS,
+  LOADING_STRIPE_DIMENSIONS,
+  getVariantColors
+} from './Button.styles';
 
 interface ButtonProps {
   title: string;
@@ -31,6 +43,8 @@ interface ButtonProps {
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   haptic?: boolean;
+  loading?: boolean;
+  variant?: 'primary' | 'success' | 'error' | 'base';
 }
 
 const AnimatedView = Animated.createAnimatedComponent(View);
@@ -43,10 +57,35 @@ export const Button = ({
   size = "md",
   leftIcon,
   rightIcon,
-  haptic = true
+  haptic = true,
+  loading = false,
+  variant = 'primary',
 }: ButtonProps) => {
   const [layout, setLayout] = useState({ width: 0, height: 0 });
   const scale = useSharedValue(1);
+  const loadingValue = useSharedValue(0);
+
+  React.useEffect(() => {
+    if (loading) {
+      loadingValue.value = withRepeat(
+        withTiming(1, { duration: ANIMATION_DURATION.LOADING, easing: Easing.linear }),
+        -1,
+        false
+      );
+    } else {
+      loadingValue.value = withTiming(0);
+    }
+  }, [loading]);
+
+  const stripeOffset = useDerivedValue(() => loadingValue.value * LOADING_STRIPE_DIMENSIONS.OFFSET_MULTIPLIER);
+  const stripeStart = useDerivedValue(() => vec(stripeOffset.value, 0));
+  const stripeEnd = useDerivedValue(() => vec(stripeOffset.value + LOADING_STRIPE_DIMENSIONS.STRIPE_WIDTH, LOADING_STRIPE_DIMENSIONS.STRIPE_HEIGHT));
+  const loadingOpacity = useDerivedValue(() => withTiming(loading ? 1 : 0, { duration: ANIMATION_DURATION.FADE }));
+  const contentOpacity = useDerivedValue(() => withTiming(loading ? 0.7 : 1, { duration: ANIMATION_DURATION.FADE }));
+
+  const contentAnimatedStyle = useAnimatedStyle(() => ({
+    opacity: contentOpacity.value,
+  }));
 
   const radius = rounded[roundedToken];
   const sizeConfig = buttonSizes[size];
@@ -64,11 +103,11 @@ export const Button = ({
     if (haptic) {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
-    scale.value = withTiming(0.96, { duration: 100 });
+    scale.value = withTiming(BUTTON_SCALE_VALUE, { duration: ANIMATION_DURATION.SCALE });
   };
 
   const handlePressOut = () => {
-    scale.value = withTiming(1, { duration: 100 });
+    scale.value = withTiming(1, { duration: ANIMATION_DURATION.SCALE });
   };
 
   return (
@@ -98,20 +137,42 @@ export const Button = ({
             >
               <LinearGradient
                 start={vec(0, 0)}
-                end={vec(0, layout.height)}
-                colors={[colors.slate[700], colors.common.black]}
+                end={vec(0, layout.height || 1)}
+                colors={getVariantColors(variant)}
               />
               <Shadow
                 dx={0}
                 dy={4}
                 blur={3}
-                color="rgba(255, 255, 255, 0.5)"
+                color={SHADOW_COLOR}
                 inner
+              />
+            </RoundedRect>
+            <RoundedRect
+              x={0}
+              y={0}
+              width={layout.width}
+              height={layout.height}
+              r={radius}
+              opacity={loadingOpacity}
+            >
+              <LinearGradient
+                start={stripeStart}
+                end={stripeEnd}
+                colors={LOADING_STRIPE_COLORS}
+                positions={[0, 0.5, 0.5, 1]}
+                mode="repeat"
               />
             </RoundedRect>
           </Canvas>
         )}
-        <View style={[styles.content, { paddingHorizontal: sizeConfig.paddingHorizontal }]}>
+        <AnimatedView 
+          style={[
+            styles.content, 
+            { paddingHorizontal: sizeConfig.paddingHorizontal },
+            contentAnimatedStyle
+          ]}
+        >
           {leftIcon && (
             <View style={styles.leftIconContainer}>
               {React.isValidElement(leftIcon)
@@ -131,35 +192,9 @@ export const Button = ({
                 : rightIcon}
             </View>
           )}
-        </View>
+        </AnimatedView>
       </AnimatedView>
     </Pressable>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    minWidth: 100,
-  },
-  inner: {
-    flex: 1,
-    overflow: 'hidden',
-  },
-  content: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    color: colors.common.white,
-    fontWeight: '500',
-    letterSpacing: 0.2,
-  },
-  leftIconContainer: {
-    marginRight: spacing[2],
-  },
-  rightIconContainer: {
-    marginLeft: spacing[2],
-  },
-});

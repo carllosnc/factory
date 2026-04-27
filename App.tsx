@@ -16,16 +16,29 @@ export default function App() {
         onPress={() => console.log('Pressed')}
       />
       <Button
-        title="Launch Factory"
+        title="Processing..."
         size='md'
+        loading={true}
         leftIcon={<Ionicons name="rocket" size={20} color="white" />}
         onPress={() => console.log('Pressed')}
       />
       <Button
-        title="Launch Factory"
-        size='lg'
-        leftIcon={<Ionicons name="rocket" size={20} color="white" />}
-        onPress={() => console.log('Pressed')}
+        title="Success State"
+        variant="success"
+        size='md'
+        onPress={() => console.log('Success')}
+      />
+      <Button
+        title="Error State"
+        variant="error"
+        size='md'
+        onPress={() => console.log('Error')}
+      />
+      <Button
+        title="Secondary State"
+        variant="base"
+        size='md'
+        onPress={() => console.log('Slate')}
       />
       <StatusBar style="light" />
     </View>
