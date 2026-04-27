@@ -1,8 +1,3 @@
-/**
- * Design Tokens for the Factory Design System.
- * Includes a premium color palette and a consistent spacing scale.
- */
-
 export const colors = {
   primary: {
     50: '#f5f7ff',
