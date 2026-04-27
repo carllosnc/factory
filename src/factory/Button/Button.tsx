@@ -38,6 +38,7 @@ interface ButtonProps {
   rightIcon?: React.ReactNode;
   haptic?: boolean;
   loading?: boolean;
+  disabled?: boolean;
   variant?: 'primary' | 'success' | 'error' | 'base';
 }
 
@@ -53,6 +54,7 @@ export const Button = ({
   rightIcon,
   haptic = true,
   loading = false,
+  disabled = false,
   variant = 'primary',
 }: ButtonProps) => {
   const {
@@ -76,14 +78,15 @@ export const Button = ({
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
       onLayout={onLayout}
-      disabled={loading}
+      disabled={disabled || loading}
       style={[
         styles.container,
         {
           borderRadius: radius,
           height: sizeConfig.height,
         },
-        style
+        style,
+        disabled && { opacity: 0.5 }
       ]}
     >
       <AnimatedView style={[styles.inner, animatedStyle]}>

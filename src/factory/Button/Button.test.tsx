@@ -23,4 +23,12 @@ describe('Button', () => {
     fireEvent.press(getByText('Loading'));
     expect(onPressMock).not.toHaveBeenCalled();
   });
+
+  it('is disabled when disabled prop is true', () => {
+    const onPressMock = jest.fn();
+    const { getByText } = render(<Button title="Disabled" onPress={onPressMock} disabled={true} />);
+
+    fireEvent.press(getByText('Disabled'));
+    expect(onPressMock).not.toHaveBeenCalled();
+  });
 });
