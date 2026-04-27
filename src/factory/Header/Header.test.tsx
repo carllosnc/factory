@@ -10,22 +10,20 @@ describe('Header', () => {
 
   it('calls onBackPress when back button is pressed', () => {
     const onBackPressMock = jest.fn();
-    const { getByRole } = render(<Header title="Title" onBackPress={onBackPressMock} />);
+    const { getByTestId } = render(<Header title="Title" onBackPress={onBackPressMock} />);
     
-    // The back button is a Pressable, it might not have a role by default.
-    // But it contains an Ionicons.
-    // Let's use a different way to find it or just trust it's there.
-    // Actually, I can add a testID.
+    fireEvent.press(getByTestId('header-back-button'));
+    expect(onBackPressMock).toHaveBeenCalledTimes(1);
   });
 
   it('renders tabs and handles tab press', () => {
     const onTabPressMock = jest.fn();
     const tabs = ['Tab 1', 'Tab 2'];
-    const { getByText } = render(
+    const { getByTestId } = render(
       <Header title="Title" tabs={tabs} onTabPress={onTabPressMock} />
     );
 
-    fireEvent.press(getByText('Tab 2'));
+    fireEvent.press(getByTestId('tab-Tab 2'));
     expect(onTabPressMock).toHaveBeenCalledWith('Tab 2');
   });
 });

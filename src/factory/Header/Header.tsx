@@ -60,6 +60,7 @@ export const Header = ({
             {onBackPress && (
               <Pressable
                 onPress={onBackPress}
+                testID="header-back-button"
                 style={({ pressed }) => [
                   styles.backButton,
                   { opacity: pressed ? 0.7 : 1 }
@@ -98,6 +99,7 @@ export const Header = ({
                 <Pressable
                   key={tab}
                   onPress={() => onTabPress?.(tab)}
+                  testID={`tab-${tab}`}
                   onLayout={(e) => {
                     onTabLayout(tab, e.nativeEvent.layout.x, e.nativeEvent.layout.width);
                   }}

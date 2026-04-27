@@ -11,14 +11,13 @@ export const styles = StyleSheet.create({
   },
   inner: {
     paddingTop: spacing[4],
-    paddingBottom: spacing[2],
   },
   topSection: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: spacing[5],
-    marginBottom: spacing[6],
+    marginBottom: spacing[3],
   },
   titleContainer: {
     flexDirection: 'row',
@@ -31,8 +30,8 @@ export const styles = StyleSheet.create({
     padding: spacing[2],
   },
   title: {
-    fontSize: 20,
-    fontWeight: '600',
+    fontSize: 17,
+    fontWeight: '500',
     color: colors.common.white,
     flex: 1,
   },
@@ -45,7 +44,9 @@ export const styles = StyleSheet.create({
     padding: spacing[2],
   },
   tabScroll: {
+    marginTop: spacing[2],
     paddingHorizontal: spacing[2],
+    paddingBottom: spacing[2],
   },
   tabList: {
     flexDirection: 'row',
