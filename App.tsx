@@ -56,7 +56,6 @@ export default function App() {
           onPress={() => console.log('Slate')}
         />
       </View>
-      <StatusBar style="light" />
     </View>
   );
 }

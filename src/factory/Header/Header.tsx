@@ -6,6 +6,7 @@ import {
   ScrollView,
   StyleSheet,
 } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import {
   Canvas,
@@ -23,6 +24,8 @@ interface HeaderProps {
   tabs?: string[];
   activeTab?: string;
   onTabPress?: (tab: string) => void;
+  statusBarStyle?: 'light' | 'dark' | 'auto' | 'inverted';
+  statusBarTranslucent?: boolean;
 }
 
 export const Header = ({
@@ -32,11 +35,14 @@ export const Header = ({
   tabs = [],
   activeTab,
   onTabPress,
+  statusBarStyle = 'light',
+  statusBarTranslucent = true,
 }: HeaderProps) => {
   const { layout, scrollViewRef, onLayout, onTabLayout } = useHeader(activeTab);
 
   return (
     <View style={styles.container} onLayout={onLayout}>
+      <StatusBar style={statusBarStyle} translucent={statusBarTranslucent} />
       {layout.width > 0 && (
         <Canvas style={StyleSheet.absoluteFill}>
           <Rect x={0} y={0} width={layout.width} height={layout.height}>
