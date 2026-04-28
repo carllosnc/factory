@@ -7,10 +7,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: spacing.s5,
     paddingHorizontal: spacing.s4,
-    backgroundColor: uiColors.theme.background,
+    backgroundColor: uiColors.theme.surface,
   },
   groupContainer: {
-    backgroundColor: uiColors.theme.background,
+    backgroundColor: uiColors.theme.surface,
     borderRadius: 16,
     overflow: 'hidden',
     borderWidth: 1,

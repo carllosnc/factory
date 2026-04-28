@@ -72,7 +72,7 @@ export const ListTileScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: uiColors.theme.surface,
+    backgroundColor: uiColors.theme.background,
   },
   content: {
     padding: spacing.s4

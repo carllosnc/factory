@@ -64,7 +64,7 @@ export const uiColors = {
   },
 
   theme: {
-    background: colors.base.t50,
+    background: colors.base.t200,
     foreground: colors.base.t800,
     surface: colors.base.t50,
     border: colors.base.t300,

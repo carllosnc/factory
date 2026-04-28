@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     backgroundColor: uiColors.theme.background,
   },
   content: {
-    padding: spacing.s6,
+    padding: spacing.s4,
   },
   contentPlaceholder: {
     gap: spacing.s6,
