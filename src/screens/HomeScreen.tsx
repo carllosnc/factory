@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Header, ListTile, ListTileGroup, spacing, colors, uiColors } from '../factory';
-import { Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
 type RootStackParamList = {
   Home: undefined;
@@ -25,7 +25,7 @@ export const HomeScreen = () => {
       <Header
         title="Factory Design System"
         actions={[
-          { icon: <Ionicons name="settings-outline" size={22} color="white" />, onPress: () => {} }
+          { icon: <Feather name="settings" size={20} color="white" />, onPress: () => {} }
         ]}
       />
       <ScrollView contentContainerStyle={styles.content}>
@@ -35,8 +35,8 @@ export const HomeScreen = () => {
             <ListTile
               title="Buttons Gallery"
               subtitle="View all interactive button variants"
-              leftIcon={<Ionicons name="apps" size={20} color={uiColors.theme.foreground} />}
-              rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
+              leftIcon={<Feather name="grid" size={18} color={uiColors.theme.foreground} />}
+              rightIcon={<Feather name="chevron-right" size={18} color={uiColors.theme.muted} />}
               iconWrapper
               onPress={() => navigation.navigate('Buttons')}
               divider
@@ -44,8 +44,8 @@ export const HomeScreen = () => {
             <ListTile
               title="Header with Tabs"
               subtitle="Smooth tab navigation in headers"
-              leftIcon={<Ionicons name="list" size={20} color={uiColors.theme.foreground} />}
-              rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
+              leftIcon={<Feather name="list" size={18} color={uiColors.theme.foreground} />}
+              rightIcon={<Feather name="chevron-right" size={18} color={uiColors.theme.muted} />}
               iconWrapper
               onPress={() => navigation.navigate('Tabs')}
               divider
@@ -53,8 +53,8 @@ export const HomeScreen = () => {
             <ListTile
               title="ListTile Components"
               subtitle="Showcase of interactive list items"
-              leftIcon={<Ionicons name="albums-outline" size={20} color={uiColors.theme.foreground} />}
-              rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
+              leftIcon={<Feather name="layers" size={18} color={uiColors.theme.foreground} />}
+              rightIcon={<Feather name="chevron-right" size={18} color={uiColors.theme.muted} />}
               iconWrapper
               onPress={() => navigation.navigate('ListTiles')}
               divider
@@ -62,8 +62,8 @@ export const HomeScreen = () => {
             <ListTile
               title="Icon Buttons"
               subtitle="Buttons with badges and labels"
-              leftIcon={<Ionicons name="notifications-circle-outline" size={20} color={uiColors.theme.foreground} />}
-              rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
+              leftIcon={<Feather name="bell" size={18} color={uiColors.theme.foreground} />}
+              rightIcon={<Feather name="chevron-right" size={18} color={uiColors.theme.muted} />}
               iconWrapper
               onPress={() => navigation.navigate('IconButtons')}
               divider
@@ -71,8 +71,8 @@ export const HomeScreen = () => {
             <ListTile
               title="Typography & Text"
               subtitle="Text variants and truncation"
-              leftIcon={<Ionicons name="text" size={20} color={uiColors.theme.foreground} />}
-              rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
+              leftIcon={<Feather name="type" size={18} color={uiColors.theme.foreground} />}
+              rightIcon={<Feather name="chevron-right" size={18} color={uiColors.theme.muted} />}
               iconWrapper
               onPress={() => navigation.navigate('Typography')}
               divider
@@ -80,8 +80,8 @@ export const HomeScreen = () => {
             <ListTile
               title="Dividers"
               subtitle="Horizontal and vertical separators"
-              leftIcon={<Ionicons name="remove" size={20} color={uiColors.theme.foreground} />}
-              rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
+              leftIcon={<Feather name="minus" size={18} color={uiColors.theme.foreground} />}
+              rightIcon={<Feather name="chevron-right" size={18} color={uiColors.theme.muted} />}
               iconWrapper
               onPress={() => navigation.navigate('Dividers')}
             />

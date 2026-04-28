@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Header, ListTile, ListTileGroup, spacing, colors, uiColors } from '../factory';
-import { Ionicons } from '@expo/vector-icons';
+import { Header, ListTile, ListTileGroup, spacing, uiColors } from '../factory';
+import { Feather } from '@expo/vector-icons';
 
 const CATEGORIES = ['All', 'Electronics', 'Clothing', 'Home', 'Garden', 'Toys', 'Sports', 'Books'];
 
@@ -33,9 +33,9 @@ export const TabsScreen = () => {
                 key={item}
                 title={`Item ${item}`}
                 subtitle={`Description for item ${item} in ${activeTab}`}
-                leftIcon={<Ionicons name="cube-outline" size={24} color={uiColors.theme.foreground} />}
+                leftIcon={<Feather name="box" size={20} color={uiColors.theme.foreground} />}
                 iconWrapper
-                rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
+                rightIcon={<Feather name="chevron-right" size={18} color={uiColors.theme.muted} />}
                 divider={index !== 4}
                 onPress={() => console.log(`Pressed item ${item}`)}
               />

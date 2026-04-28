@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Header, Button, spacing, colors, uiColors } from '../factory';
-import { Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
 export const ButtonsScreen = () => {
   const navigation = useNavigation();
@@ -46,13 +46,13 @@ export const ButtonsScreen = () => {
           <View style={styles.column}>
             <Button
               title="Launch Rocket"
-              leftIcon={<Ionicons name="rocket" size={20} color="white" />}
+              leftIcon={<Feather name="send" size={20} color="white" />}
               onPress={() => {}}
             />
             <Button
               title="Notifications"
               variant="success"
-              leftIcon={<Ionicons name="notifications" size={20} color="white" />}
+              leftIcon={<Feather name="bell" size={20} color="white" />}
               onPress={() => {}}
             />
           </View>

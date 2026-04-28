@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Header, ListTile, ListTileGroup, spacing, colors, uiColors } from '../factory';
-import { Ionicons } from '@expo/vector-icons';
+import { Header, ListTile, ListTileGroup, spacing, uiColors } from '../factory';
+import { Feather } from '@expo/vector-icons';
 
 export const ListTileScreen = () => {
   const navigation = useNavigation();
@@ -18,9 +18,9 @@ export const ListTileScreen = () => {
           <ListTile
             title="Account Settings"
             subtitle="Manage your profile and privacy"
-            leftIcon={<Ionicons name="person-outline" size={20} color={uiColors.theme.foreground} />}
+            leftIcon={<Feather name="user" size={18} color={uiColors.theme.foreground} />}
             iconWrapper
-            rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
+            rightIcon={<Feather name="chevron-right" size={18} color={uiColors.theme.muted} />}
             onPress={() => console.log('Pressed Account Settings')}
             divider
           />
@@ -28,9 +28,9 @@ export const ListTileScreen = () => {
           <ListTile
             title="Notifications"
             subtitle="Configure alert preferences"
-            leftIcon={<Ionicons name="notifications-outline" size={20} color={uiColors.theme.foreground} />}
+            leftIcon={<Feather name="bell" size={18} color={uiColors.theme.foreground} />}
             iconWrapper
-            rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
+            rightIcon={<Feather name="chevron-right" size={18} color={uiColors.theme.muted} />}
             onPress={() => console.log('Pressed Notifications')}
             divider
           />
@@ -38,9 +38,9 @@ export const ListTileScreen = () => {
           <ListTile
             title="Security"
             subtitle="Password, 2FA, and linked accounts"
-            leftIcon={<Ionicons name="shield-checkmark-outline" size={20} color={uiColors.theme.foreground} />}
+            leftIcon={<Feather name="shield" size={18} color={uiColors.theme.foreground} />}
             iconWrapper
-            rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
+            rightIcon={<Feather name="chevron-right" size={18} color={uiColors.theme.muted} />}
             onPress={() => console.log('Pressed Security')}
             divider
           />
@@ -48,9 +48,9 @@ export const ListTileScreen = () => {
           <ListTile
             title="Appearance"
             subtitle="Dark mode and color themes"
-            leftIcon={<Ionicons name="color-palette-outline" size={20} color={uiColors.theme.foreground} />}
+            leftIcon={<Feather name="droplet" size={18} color={uiColors.theme.foreground} />}
             iconWrapper
-            rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
+            rightIcon={<Feather name="chevron-right" size={18} color={uiColors.theme.muted} />}
             onPress={() => console.log('Pressed Appearance')}
             divider
           />
@@ -58,9 +58,9 @@ export const ListTileScreen = () => {
           <ListTile
             title="Help & Support"
             subtitle="FAQs and contact information"
-            leftIcon={<Ionicons name="help-circle-outline" size={20} color={uiColors.theme.foreground} />}
+            leftIcon={<Feather name="help-circle" size={18} color={uiColors.theme.foreground} />}
             iconWrapper
-            rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
+            rightIcon={<Feather name="chevron-right" size={18} color={uiColors.theme.muted} />}
             onPress={() => console.log('Pressed Help & Support')}
           />
         </ListTileGroup>

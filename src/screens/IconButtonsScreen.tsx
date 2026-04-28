@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Header, IconButton, spacing, uiColors } from '../factory';
-import { Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
 export const IconButtonsScreen = () => {
   const navigation = useNavigation();
@@ -18,25 +18,25 @@ export const IconButtonsScreen = () => {
           <Text style={styles.sectionTitle}>Variants</Text>
           <View style={styles.row}>
             <IconButton
-              icon={<Ionicons name="rocket-outline" size={26} />}
+              icon={<Feather name="send" size={24} />}
               label="Primary"
               variant="primary"
               onPress={() => {}}
             />
             <IconButton
-              icon={<Ionicons name="checkmark-circle-outline" size={26} />}
+              icon={<Feather name="check-circle" size={24} />}
               label="Success"
               variant="success"
               onPress={() => {}}
             />
             <IconButton
-              icon={<Ionicons name="alert-circle-outline" size={26} />}
+              icon={<Feather name="alert-circle" size={24} />}
               label="Error"
               variant="error"
               onPress={() => {}}
             />
             <IconButton
-              icon={<Ionicons name="cube-outline" size={26} />}
+              icon={<Feather name="box" size={24} />}
               label="Base"
               variant="base"
               onPress={() => {}}
@@ -48,21 +48,21 @@ export const IconButtonsScreen = () => {
           <Text style={styles.sectionTitle}>Badges</Text>
           <View style={styles.row}>
             <IconButton
-              icon={<Ionicons name="notifications-outline" size={26} />}
+              icon={<Feather name="bell" size={24} />}
               label="Alerts"
               badge={true}
               variant="primary"
               onPress={() => {}}
             />
             <IconButton
-              icon={<Ionicons name="mail-outline" size={26} />}
+              icon={<Feather name="mail" size={24} />}
               label="Inbox"
               badge={5}
               variant="success"
               onPress={() => {}}
             />
             <IconButton
-              icon={<Ionicons name="chatbubbles-outline" size={26} />}
+              icon={<Feather name="message-square" size={24} />}
               label="Messages"
               badge={120}
               variant="error"
@@ -75,22 +75,22 @@ export const IconButtonsScreen = () => {
           <Text style={styles.sectionTitle}>Variations</Text>
           <View style={styles.row}>
             <IconButton
-              icon={<Ionicons name="heart-outline" size={26} />}
+              icon={<Feather name="heart" size={24} />}
               label="Like"
               onPress={() => {}}
             />
             <IconButton
-              icon={<Ionicons name="bookmark-outline" size={26} />}
+              icon={<Feather name="bookmark" size={24} />}
               label="Save"
               onPress={() => {}}
             />
             <IconButton
-              icon={<Ionicons name="camera-outline" size={26} />}
+              icon={<Feather name="camera" size={24} />}
               label="Photo"
               onPress={() => {}}
             />
             <IconButton
-              icon={<Ionicons name="mic-outline" size={26} />}
+              icon={<Feather name="mic" size={24} />}
               label="Record"
               onPress={() => {}}
             />

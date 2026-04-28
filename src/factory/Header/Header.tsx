@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import {
   Canvas,
   Rect,
@@ -66,7 +66,7 @@ export const Header = ({
                   { opacity: pressed ? 0.7 : 1 }
                 ]}
               >
-                <Ionicons name="chevron-back" size={24} color="white" />
+                <Feather name="chevron-left" size={24} color="white" />
               </Pressable>
             )}
             <Text style={styles.title} numberOfLines={1}>{title}</Text>
