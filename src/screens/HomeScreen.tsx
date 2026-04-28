@@ -12,6 +12,7 @@ type RootStackParamList = {
   ListTiles: undefined;
   IconButtons: undefined;
   Typography: undefined;
+  Dividers: undefined;
 };
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
@@ -74,6 +75,15 @@ export const HomeScreen = () => {
               rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
               iconWrapper
               onPress={() => navigation.navigate('Typography')}
+              divider
+            />
+            <ListTile
+              title="Dividers"
+              subtitle="Horizontal and vertical separators"
+              leftIcon={<Ionicons name="remove" size={20} color={uiColors.theme.foreground} />}
+              rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
+              iconWrapper
+              onPress={() => navigation.navigate('Dividers')}
             />
           </ListTileGroup>
         </View>

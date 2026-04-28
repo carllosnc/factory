@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
-import { Header, Text, spacing, uiColors } from '../factory';
+import { Header, Text, spacing, uiColors, Divider, colors } from '../factory';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
