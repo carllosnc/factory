@@ -1,5 +1,5 @@
 import { StyleSheet, Platform, StatusBar } from 'react-native';
-import { colors, spacing } from '../factory';
+import { colors, spacing, uiColors } from '../factory';
 
 const STATUS_BAR_HEIGHT = Platform.OS === 'ios' ? 50 : StatusBar.currentHeight || 0;
 
@@ -10,14 +10,14 @@ export const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   inner: {
-    paddingTop: spacing[4],
+    paddingTop: spacing.s4,
   },
   topSection: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: spacing[5],
-    marginBottom: spacing[3],
+    paddingHorizontal: spacing.s5,
+    marginBottom: spacing.s3,
   },
   titleContainer: {
     flexDirection: 'row',
@@ -25,14 +25,14 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   backButton: {
-    marginRight: spacing[2],
-    marginLeft: -spacing[2],
-    padding: spacing[2],
+    marginRight: spacing.s2,
+    marginLeft: -spacing.s2,
+    padding: spacing.s2,
   },
   title: {
     fontSize: 17,
     fontWeight: '500',
-    color: colors.common.white,
+    color: uiColors.common.white,
     flex: 1,
   },
   actions: {
@@ -40,21 +40,21 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   actionButton: {
-    marginLeft: spacing[2],
-    padding: spacing[2],
+    marginLeft: spacing.s2,
+    padding: spacing.s2,
   },
   tabScroll: {
-    marginTop: spacing[2],
-    paddingHorizontal: spacing[2],
-    paddingBottom: spacing[2],
+    marginTop: spacing.s2,
+    paddingHorizontal: spacing.s2,
+    paddingBottom: spacing.s2,
   },
   tabList: {
     flexDirection: 'row',
-    gap: spacing[2],
+    gap: spacing.s2,
   },
   tab: {
-    paddingHorizontal: spacing[5],
-    paddingVertical: spacing[2],
+    paddingHorizontal: spacing.s5,
+    paddingVertical: spacing.s2,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
@@ -64,12 +64,12 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.25)',
   },
   tabText: {
-    color: colors.common.white,
+    color: uiColors.common.white,
     fontSize: 13,
     fontWeight: '600',
   },
 });
 
 export const HEADER_GRADIENT = [
-  colors.primary[500], colors.primary[800]
+  colors.primary.t500, colors.primary.t800
 ];

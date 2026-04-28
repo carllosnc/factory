@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Header, spacing, colors } from '../factory';
+import { Header, ListTile, ListTileGroup, spacing, colors, uiColors } from '../factory';
+import { Ionicons } from '@expo/vector-icons';
 
 const CATEGORIES = ['All', 'Electronics', 'Clothing', 'Home', 'Garden', 'Toys', 'Sports', 'Books'];
 
@@ -11,8 +12,8 @@ export const TabsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Header 
-        title="Products" 
+      <Header
+        title="Products"
         onBackPress={() => navigation.goBack()}
         tabs={CATEGORIES}
         activeTab={activeTab}
@@ -24,17 +25,22 @@ export const TabsScreen = () => {
           <Text style={styles.placeholderText}>
             This screen demonstrates the smooth tab navigation built into the premium Header component.
           </Text>
-          
-          {/* Example items based on active tab */}
-          {[1, 2, 3, 4, 5].map((item) => (
-            <View key={item} style={styles.itemCard}>
-              <View style={styles.itemImage} />
-              <View style={styles.itemDetails}>
-                <View style={styles.itemTitlePlaceholder} />
-                <View style={styles.itemPricePlaceholder} />
-              </View>
-            </View>
-          ))}
+
+          {/* Example items using ListTile */}
+          <ListTileGroup>
+            {[1, 2, 3, 4, 5].map((item, index) => (
+              <ListTile
+                key={item}
+                title={`Item ${item}`}
+                subtitle={`Description for item ${item} in ${activeTab}`}
+                leftIcon={<Ionicons name="cube-outline" size={24} color={uiColors.theme.foreground} />}
+                iconWrapper
+                rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
+                divider={index !== 4}
+                onPress={() => console.log(`Pressed item ${item}`)}
+              />
+            ))}
+          </ListTileGroup>
         </View>
       </ScrollView>
     </View>
@@ -44,52 +50,22 @@ export const TabsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.theme.background,
+    backgroundColor: uiColors.theme.background,
   },
   content: {
-    padding: spacing[6],
+    padding: spacing.s6,
   },
   contentPlaceholder: {
-    gap: spacing[6],
+    gap: spacing.s6,
   },
   tabInfo: {
     fontSize: 20,
     fontWeight: '700',
-    color: colors.theme.foreground,
+    color: uiColors.theme.foreground,
   },
   placeholderText: {
     fontSize: 15,
-    color: colors.theme.muted,
+    color: uiColors.theme.muted,
     lineHeight: 22,
-  },
-  itemCard: {
-    flexDirection: 'row',
-    padding: spacing[4],
-    backgroundColor: '#f1f5f9',
-    borderRadius: 16,
-    gap: spacing[4],
-  },
-  itemImage: {
-    width: 80,
-    height: 80,
-    backgroundColor: '#e2e8f0',
-    borderRadius: 12,
-  },
-  itemDetails: {
-    flex: 1,
-    justifyContent: 'center',
-    gap: spacing[2],
-  },
-  itemTitlePlaceholder: {
-    width: '70%',
-    height: 16,
-    backgroundColor: '#e2e8f0',
-    borderRadius: 4,
-  },
-  itemPricePlaceholder: {
-    width: '30%',
-    height: 14,
-    backgroundColor: '#e2e8f0',
-    borderRadius: 4,
   },
 });

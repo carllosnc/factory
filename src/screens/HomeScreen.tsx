@@ -2,13 +2,14 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { Header, Button, spacing, colors } from '../factory';
+import { Header, ListTile, ListTileGroup, spacing, colors, uiColors } from '../factory';
 import { Ionicons } from '@expo/vector-icons';
 
 type RootStackParamList = {
   Home: undefined;
   Buttons: undefined;
   Tabs: undefined;
+  ListTiles: undefined;
 };
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
@@ -18,8 +19,8 @@ export const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Header 
-        title="Factory Design System" 
+      <Header
+        title="Factory Design System"
         actions={[
           { icon: <Ionicons name="settings-outline" size={22} color="white" />, onPress: () => {} }
         ]}
@@ -32,20 +33,34 @@ export const HomeScreen = () => {
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Components</Text>
-          <View style={{ gap: spacing[4] }}>
-            <Button
+          <ListTileGroup>
+            <ListTile
               title="Buttons Gallery"
-              variant="primary"
-              leftIcon={<Ionicons name="apps" size={20} color="white" />}
+              subtitle="View all interactive button variants"
+              leftIcon={<Ionicons name="apps" size={20} color={uiColors.theme.foreground} />}
+              rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
+              iconWrapper
               onPress={() => navigation.navigate('Buttons')}
+              divider
             />
-            <Button
+            <ListTile
               title="Header with Tabs"
-              variant="base"
-              leftIcon={<Ionicons name="list" size={20} color="white" />}
+              subtitle="Smooth tab navigation in headers"
+              leftIcon={<Ionicons name="list" size={20} color={uiColors.theme.foreground} />}
+              rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
+              iconWrapper
               onPress={() => navigation.navigate('Tabs')}
+              divider
             />
-          </View>
+            <ListTile
+              title="ListTile Components"
+              subtitle="Showcase of interactive list items"
+              leftIcon={<Ionicons name="albums-outline" size={20} color={uiColors.theme.foreground} />}
+              rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
+              iconWrapper
+              onPress={() => navigation.navigate('ListTiles')}
+            />
+          </ListTileGroup>
         </View>
       </ScrollView>
     </View>
@@ -55,30 +70,30 @@ export const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.theme.background,
+    backgroundColor: uiColors.theme.background,
   },
   content: {
-    padding: spacing[6],
+    padding: spacing.s4,
   },
   welcome: {
     fontSize: 28,
     fontWeight: '700',
-    color: colors.theme.foreground,
-    marginBottom: spacing[2],
+    color: uiColors.theme.foreground,
+    marginBottom: spacing.s2,
   },
   description: {
     fontSize: 16,
-    color: colors.theme.muted,
+    color: uiColors.theme.muted,
     lineHeight: 24,
-    marginBottom: spacing[8],
+    marginBottom: spacing.s8,
   },
   section: {
-    marginTop: spacing[4],
+    marginTop: spacing.s4,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: colors.theme.foreground,
-    marginBottom: spacing[4],
+    color: uiColors.theme.foreground,
+    marginBottom: spacing.s4,
   },
 });

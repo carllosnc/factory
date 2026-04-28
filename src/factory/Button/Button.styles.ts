@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, spacing } from '../factory';
+import { colors, uiColors, spacing } from '../factory';
 
 export const styles = StyleSheet.create({
   container: {
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    color: colors.common.white,
+    color: uiColors.common.white,
     fontWeight: '500',
     letterSpacing: 0.2,
   },
@@ -54,12 +54,12 @@ export const LOADING_STRIPE_DIMENSIONS = {
 export const getVariantColors = (variant: 'primary' | 'success' | 'error' | 'base') => {
   switch (variant) {
     case 'success':
-      return [colors.success[500], colors.success[800]];
+      return [colors.success.t500, colors.success.t800];
     case 'error':
-      return [colors.error[500], colors.error[800]];
+      return [colors.error.t500, colors.error.t800];
     case 'base':
-      return [colors.base[600], colors.base[800]];
+      return [colors.base.t500, colors.base.t800];
     default:
-      return [colors.primary[500], colors.primary[800]];
+      return [colors.primary.t500, colors.primary.t800];
   }
 };

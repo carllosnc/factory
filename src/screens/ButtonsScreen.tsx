@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Header, Button, spacing, colors } from '../factory';
+import { Header, Button, spacing, colors, uiColors } from '../factory';
 import { Ionicons } from '@expo/vector-icons';
 
 export const ButtonsScreen = () => {
@@ -9,8 +9,8 @@ export const ButtonsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Header 
-        title="Buttons" 
+      <Header
+        title="Buttons"
         onBackPress={() => navigation.goBack()}
       />
       <ScrollView contentContainerStyle={styles.content}>
@@ -44,16 +44,16 @@ export const ButtonsScreen = () => {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Icons</Text>
           <View style={styles.column}>
-            <Button 
-              title="Launch Rocket" 
-              leftIcon={<Ionicons name="rocket" size={20} color="white" />} 
-              onPress={() => {}} 
+            <Button
+              title="Launch Rocket"
+              leftIcon={<Ionicons name="rocket" size={20} color="white" />}
+              onPress={() => {}}
             />
-            <Button 
-              title="Notifications" 
+            <Button
+              title="Notifications"
               variant="success"
-              leftIcon={<Ionicons name="notifications" size={20} color="white" />} 
-              onPress={() => {}} 
+              leftIcon={<Ionicons name="notifications" size={20} color="white" />}
+              onPress={() => {}}
             />
           </View>
         </View>
@@ -65,28 +65,28 @@ export const ButtonsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.theme.background,
+    backgroundColor: uiColors.theme.background,
   },
   content: {
-    padding: spacing[6],
-    gap: spacing[8],
+    padding: spacing.s6,
+    gap: spacing.s8,
   },
   section: {
-    gap: spacing[4],
+    gap: spacing.s4,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: colors.theme.foreground,
-    marginBottom: spacing[2],
+    color: uiColors.theme.foreground,
+    marginBottom: spacing.s2,
   },
   row: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: spacing[4],
+    gap: spacing.s4,
     alignItems: 'center',
   },
   column: {
-    gap: spacing[4],
+    gap: spacing.s4,
   },
 });
