@@ -21,10 +21,10 @@ export const styles = StyleSheet.create({
     letterSpacing: 0.2,
   },
   leftIconContainer: {
-    marginRight: spacing[2],
+    marginRight: spacing.s3,
   },
   rightIconContainer: {
-    marginLeft: spacing[2],
+    marginLeft: spacing.s3,
   },
 });
 

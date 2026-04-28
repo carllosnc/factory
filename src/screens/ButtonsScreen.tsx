@@ -57,6 +57,7 @@ export const ButtonsScreen = () => {
             />
           </View>
         </View>
+
       </ScrollView>
     </View>
   );

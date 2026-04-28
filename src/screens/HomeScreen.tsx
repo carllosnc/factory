@@ -10,6 +10,7 @@ type RootStackParamList = {
   Buttons: undefined;
   Tabs: undefined;
   ListTiles: undefined;
+  IconButtons: undefined;
 };
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
@@ -26,11 +27,6 @@ export const HomeScreen = () => {
         ]}
       />
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.welcome}>Welcome to Factory</Text>
-        <Text style={styles.description}>
-          A premium design system built with React Native Skia and Reanimated.
-        </Text>
-
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Components</Text>
           <ListTileGroup>
@@ -59,6 +55,15 @@ export const HomeScreen = () => {
               rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
               iconWrapper
               onPress={() => navigation.navigate('ListTiles')}
+              divider
+            />
+            <ListTile
+              title="Icon Buttons"
+              subtitle="Buttons with badges and labels"
+              leftIcon={<Ionicons name="notifications-circle-outline" size={20} color={uiColors.theme.foreground} />}
+              rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
+              iconWrapper
+              onPress={() => navigation.navigate('IconButtons')}
             />
           </ListTileGroup>
         </View>
