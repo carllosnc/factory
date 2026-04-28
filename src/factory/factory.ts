@@ -81,26 +81,26 @@ export const uiColors = {
 } as const;
 
 export const spacing = {
-  s0: 0,
-  s0_5: 2,
-  s1: 4,
-  s1_5: 6,
-  s2: 8,
-  s3: 12,
-  s4: 16,
-  s5: 20,
-  s6: 24,
-  s8: 32,
-  s10: 40,
+  s1: 0,
+  s2: 2,
+  s3: 4,
+  s4: 6,
+  s5: 8,
+  s6: 12,
+  s7: 16,
+  s8: 20,
+  s9: 24,
+  s10: 32,
+  s11: 40,
   s12: 48,
-  s16: 64,
-  s20: 80,
-  s24: 96,
-  s32: 128,
-  s40: 160,
-  s48: 192,
-  s56: 224,
-  s64: 256,
+  s13: 64,
+  s14: 80,
+  s15: 96,
+  s16: 128,
+  s17: 160,
+  s18: 192,
+  s19: 224,
+  s20: 256,
 } as const;
 
 export const buttonSizes = {
@@ -131,13 +131,43 @@ export const rounded = {
   md: 8,
   lg: 12,
   xl: 16,
-  '2xl': 24,
-  '3xl': 32,
+  xl2: 24,
+  xl3: 32,
   full: 9999,
 } as const;
 
-export type ColorScale = keyof typeof colors.primary;
-export type SpacingScale = keyof typeof spacing;
-export type ButtonSize = keyof typeof buttonSizes;
-export type RoundedScale = keyof typeof rounded;
-export type ColorToken = typeof colors;
+export const typography = {
+  xs: 12,
+  sm: 14,
+  base: 16,
+  lg: 18,
+  xl: 20,
+  xl2: 24,
+  xl3: 30,
+  xl4: 36,
+  xl5: 48,
+  xl6: 60,
+  xl7: 72,
+  xl8: 96,
+  xl9: 128,
+} as const;
+
+type ColorScale = keyof typeof colors.primary;
+type SpacingScale = keyof typeof spacing;
+type ButtonSize = keyof typeof buttonSizes;
+type RoundedScale = keyof typeof rounded;
+type TypographyScale = keyof typeof typography;
+type ColorToken = typeof colors;
+type UiColorToken = typeof uiColors;
+type ThemeVariant = keyof typeof colors;
+
+export type {
+  ColorScale,
+  SpacingScale,
+  ButtonSize,
+  RoundedScale,
+  TypographyScale,
+  ColorToken,
+  UiColorToken,
+  ThemeVariant,
+};

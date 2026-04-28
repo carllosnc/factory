@@ -53,10 +53,10 @@ const styles = StyleSheet.create({
     backgroundColor: uiColors.theme.background,
   },
   content: {
-    padding: spacing.s4,
+    padding: spacing.s7,
   },
   contentPlaceholder: {
-    gap: spacing.s6,
+    gap: spacing.s9,
   },
   tabInfo: {
     fontSize: 20,

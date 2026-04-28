@@ -10,14 +10,14 @@ export const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   inner: {
-    paddingTop: spacing.s4,
+    paddingTop: spacing.s7,
   },
   topSection: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: spacing.s5,
-    marginBottom: spacing.s3,
+    paddingHorizontal: spacing.s8,
+    marginBottom: spacing.s6,
   },
   titleContainer: {
     flexDirection: 'row',
@@ -25,9 +25,9 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   backButton: {
-    marginRight: spacing.s2,
-    marginLeft: -spacing.s2,
-    padding: spacing.s2,
+    marginRight: spacing.s5,
+    marginLeft: -spacing.s5,
+    padding: spacing.s5,
   },
   title: {
     fontSize: 17,
@@ -40,21 +40,21 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   actionButton: {
-    marginLeft: spacing.s2,
-    padding: spacing.s2,
+    marginLeft: spacing.s5,
+    padding: spacing.s5,
   },
   tabScroll: {
-    marginTop: spacing.s2,
-    paddingHorizontal: spacing.s2,
-    paddingBottom: spacing.s2,
+    marginTop: spacing.s5,
+    paddingHorizontal: spacing.s5,
+    paddingBottom: spacing.s5,
   },
   tabList: {
     flexDirection: 'row',
-    gap: spacing.s2,
+    gap: spacing.s5,
   },
   tab: {
-    paddingHorizontal: spacing.s5,
-    paddingVertical: spacing.s2,
+    paddingHorizontal: spacing.s8,
+    paddingVertical: spacing.s5,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,

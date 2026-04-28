@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, uiColors, spacing } from '../factory';
+import { colors, uiColors, spacing, ThemeVariant } from '../factory';
 
 export const styles = StyleSheet.create({
   container: {
@@ -21,10 +21,10 @@ export const styles = StyleSheet.create({
     letterSpacing: 0.2,
   },
   leftIconContainer: {
-    marginRight: spacing.s3,
+    marginRight: spacing.s4,
   },
   rightIconContainer: {
-    marginLeft: spacing.s3,
+    marginLeft: spacing.s4,
   },
 });
 
@@ -51,7 +51,7 @@ export const LOADING_STRIPE_DIMENSIONS = {
   STRIPE_HEIGHT: 40,
 };
 
-export const getVariantColors = (variant: 'primary' | 'success' | 'error' | 'base') => {
+export const getVariantColors = (variant: ThemeVariant) => {
   switch (variant) {
     case 'success':
       return [colors.success.t500, colors.success.t800];

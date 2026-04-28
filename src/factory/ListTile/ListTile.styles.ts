@@ -5,8 +5,8 @@ export const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: spacing.s5,
-    paddingHorizontal: spacing.s4,
+    paddingVertical: spacing.s8,
+    paddingHorizontal: spacing.s7,
     backgroundColor: uiColors.theme.surface,
   },
   groupContainer: {
@@ -28,10 +28,10 @@ export const styles = StyleSheet.create({
   subtitle: {
     fontSize: 14,
     color: uiColors.theme.muted,
-    marginTop: spacing.s0_5,
+    marginTop: spacing.s2,
   },
   leftIconContainer: {
-    marginRight: spacing.s3,
+    marginRight: spacing.s6,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.base.t200,
   },
   rightIconContainer: {
-    marginLeft: spacing.s3,
+    marginLeft: spacing.s6,
     justifyContent: 'center',
     alignItems: 'center',
   },

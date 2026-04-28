@@ -11,6 +11,7 @@ type RootStackParamList = {
   Tabs: undefined;
   ListTiles: undefined;
   IconButtons: undefined;
+  Typography: undefined;
 };
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
@@ -64,6 +65,15 @@ export const HomeScreen = () => {
               rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
               iconWrapper
               onPress={() => navigation.navigate('IconButtons')}
+              divider
+            />
+            <ListTile
+              title="Typography & Text"
+              subtitle="Text variants and truncation"
+              leftIcon={<Ionicons name="text" size={20} color={uiColors.theme.foreground} />}
+              rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
+              iconWrapper
+              onPress={() => navigation.navigate('Typography')}
             />
           </ListTileGroup>
         </View>
@@ -78,27 +88,27 @@ const styles = StyleSheet.create({
     backgroundColor: uiColors.theme.background,
   },
   content: {
-    padding: spacing.s4,
+    padding: spacing.s7,
   },
   welcome: {
     fontSize: 28,
     fontWeight: '700',
     color: uiColors.theme.foreground,
-    marginBottom: spacing.s2,
+    marginBottom: spacing.s5,
   },
   description: {
     fontSize: 16,
     color: uiColors.theme.muted,
     lineHeight: 24,
-    marginBottom: spacing.s8,
+    marginBottom: spacing.s10,
   },
   section: {
-    marginTop: spacing.s4,
+    marginTop: spacing.s7,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
     color: uiColors.theme.foreground,
-    marginBottom: spacing.s4,
+    marginBottom: spacing.s7,
   },
 });

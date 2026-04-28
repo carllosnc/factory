@@ -107,22 +107,22 @@ const styles = StyleSheet.create({
     backgroundColor: uiColors.theme.background,
   },
   content: {
-    padding: spacing.s6,
-    gap: spacing.s8,
+    padding: spacing.s9,
+    gap: spacing.s10,
   },
   section: {
-    gap: spacing.s4,
+    gap: spacing.s7,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
     color: uiColors.theme.foreground,
-    marginBottom: spacing.s2,
+    marginBottom: spacing.s5,
   },
   row: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: spacing.s6,
+    gap: spacing.s9,
     alignItems: 'center',
   },
 });

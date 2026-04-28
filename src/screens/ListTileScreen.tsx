@@ -75,6 +75,6 @@ const styles = StyleSheet.create({
     backgroundColor: uiColors.theme.background,
   },
   content: {
-    padding: spacing.s4
+    padding: spacing.s7
   },
 });
