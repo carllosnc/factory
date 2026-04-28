@@ -18,7 +18,7 @@ export const ListTileScreen = () => {
           <ListTile
             title="Account Settings"
             subtitle="Manage your profile and privacy"
-            leftIcon={<Ionicons name="person" size={20} color={uiColors.theme.foreground} />}
+            leftIcon={<Ionicons name="person-outline" size={20} color={uiColors.theme.foreground} />}
             iconWrapper
             rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
             onPress={() => console.log('Pressed Account Settings')}
@@ -28,7 +28,7 @@ export const ListTileScreen = () => {
           <ListTile
             title="Notifications"
             subtitle="Configure alert preferences"
-            leftIcon={<Ionicons name="notifications" size={20} color={uiColors.theme.foreground} />}
+            leftIcon={<Ionicons name="notifications-outline" size={20} color={uiColors.theme.foreground} />}
             iconWrapper
             rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
             onPress={() => console.log('Pressed Notifications')}
@@ -38,7 +38,7 @@ export const ListTileScreen = () => {
           <ListTile
             title="Security"
             subtitle="Password, 2FA, and linked accounts"
-            leftIcon={<Ionicons name="shield-checkmark" size={20} color={uiColors.theme.foreground} />}
+            leftIcon={<Ionicons name="shield-checkmark-outline" size={20} color={uiColors.theme.foreground} />}
             iconWrapper
             rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
             onPress={() => console.log('Pressed Security')}
@@ -48,7 +48,7 @@ export const ListTileScreen = () => {
           <ListTile
             title="Appearance"
             subtitle="Dark mode and color themes"
-            leftIcon={<Ionicons name="color-palette" size={20} color={uiColors.theme.foreground} />}
+            leftIcon={<Ionicons name="color-palette-outline" size={20} color={uiColors.theme.foreground} />}
             iconWrapper
             rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
             onPress={() => console.log('Pressed Appearance')}
@@ -58,7 +58,7 @@ export const ListTileScreen = () => {
           <ListTile
             title="Help & Support"
             subtitle="FAQs and contact information"
-            leftIcon={<Ionicons name="help-circle" size={20} color={uiColors.theme.foreground} />}
+            leftIcon={<Ionicons name="help-circle-outline" size={20} color={uiColors.theme.foreground} />}
             iconWrapper
             rightIcon={<Ionicons name="chevron-forward" size={20} color={uiColors.theme.muted} />}
             onPress={() => console.log('Pressed Help & Support')}
