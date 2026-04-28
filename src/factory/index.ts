@@ -7,3 +7,4 @@ export * from './ListTile/ListTile';
 export * from './transitions/iosTransition';
 export * from './IconButton/IconButton';
 export * from './IconButton/IconButton.styles';
+export * from './Text/Text';

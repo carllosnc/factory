@@ -8,6 +8,7 @@ import { ButtonsScreen } from './src/screens/ButtonsScreen';
 import { TabsScreen } from './src/screens/TabsScreen';
 import { ListTileScreen } from './src/screens/ListTileScreen';
 import { IconButtonsScreen } from './src/screens/IconButtonsScreen';
+import { TextScreen } from './src/screens/TextScreen';
 import { customTransitionSpec, customIOSInterpolator } from './src/factory';
 
 const Stack = createStackNavigator();
@@ -34,6 +35,7 @@ export default function App() {
           <Stack.Screen name="Tabs" component={TabsScreen} />
           <Stack.Screen name="ListTiles" component={ListTileScreen} />
           <Stack.Screen name="IconButtons" component={IconButtonsScreen} />
+          <Stack.Screen name="Typography" component={TextScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </GestureHandlerRootView>
