@@ -75,8 +75,12 @@ export const IconButton = ({
     if (!badge) return null;
 
     if (typeof badge === 'number') {
+      const isMultiChar = badge > 9;
       return (
-        <View style={styles.badge}>
+        <View style={[
+          styles.badge,
+          isMultiChar && { borderRadius: 8, paddingHorizontal: 6 }
+        ]}>
           <Text style={styles.badgeText}>{badge > 99 ? '99+' : badge}</Text>
         </View>
       );

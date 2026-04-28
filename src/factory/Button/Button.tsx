@@ -18,7 +18,7 @@ import {
   Shadow,
 } from "@shopify/react-native-skia";
 
-import { rounded, RoundedScale, buttonSizes, ButtonSize } from '../factory';
+import { rounded, RoundedScale, buttonSizes, ButtonSize, ThemeVariant } from '../factory';
 
 import {
   styles,
@@ -39,7 +39,7 @@ interface ButtonProps {
   haptic?: boolean;
   loading?: boolean;
   disabled?: boolean;
-  variant?: 'primary' | 'success' | 'error' | 'base';
+  variant?: ThemeVariant;
 }
 
 const AnimatedView = Animated.createAnimatedComponent(View);
