@@ -9,3 +9,5 @@ export * from './IconButton/IconButton';
 export * from './IconButton/IconButton.styles';
 export * from './Text/Text';
 export * from './Divider/Divider';
+export * from './ThemeContext';
+export * from './Page/Page';

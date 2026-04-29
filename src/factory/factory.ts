@@ -69,14 +69,22 @@ export const uiColors = {
     surface: colors.base.t50,
     border: colors.base.t300,
     muted: colors.base.t500,
+    primary: colors.primary.t600,
+    success: colors.success.t600,
+    error: colors.error.t600,
+    white: '#ffffff',
   },
 
   dark: {
-    background: colors.base.t900,
+    background: colors.base.t950,
     foreground: colors.base.t50,
     surface: colors.base.t900,
-    border: colors.base.t200,
+    border: colors.base.t700,
     muted: colors.base.t400,
+    primary: colors.primary.t500,
+    success: colors.success.t500,
+    error: colors.error.t500,
+    white: '#ffffff',
   }
 } as const;
 
@@ -160,6 +168,7 @@ type TypographyScale = keyof typeof typography;
 type ColorToken = typeof colors;
 type UiColorToken = typeof uiColors;
 type ThemeVariant = keyof typeof colors;
+type ThemeColors = typeof uiColors.theme | typeof uiColors.dark;
 
 export type {
   ColorScale,
@@ -170,4 +179,5 @@ export type {
   ColorToken,
   UiColorToken,
   ThemeVariant,
+  ThemeColors,
 };
