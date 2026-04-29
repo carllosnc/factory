@@ -67,6 +67,7 @@ export const uiColors = {
     background: colors.base.t200,
     foreground: colors.base.t800,
     surface: colors.base.t50,
+    surfaceVariant: colors.base.t200,
     border: colors.base.t300,
     muted: colors.base.t500,
     primary: colors.primary.t600,
@@ -76,9 +77,10 @@ export const uiColors = {
   },
 
   dark: {
-    background: colors.base.t950,
+    background: colors.base.t900,
     foreground: colors.base.t50,
-    surface: colors.base.t900,
+    surface: colors.base.t800,
+    surfaceVariant: colors.base.t700,
     border: colors.base.t700,
     muted: colors.base.t400,
     primary: colors.primary.t500,

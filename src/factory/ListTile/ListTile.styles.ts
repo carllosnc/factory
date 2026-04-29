@@ -39,7 +39,7 @@ export const createStyles = (colors: ThemeColors) => StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 10,
-    backgroundColor: colors.background,
+    backgroundColor: colors.surfaceVariant,
   },
   rightIconContainer: {
     marginLeft: spacing.s6,
