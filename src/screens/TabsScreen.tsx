@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Header, ListTile, ListTileGroup, spacing, Text, useTheme, Page } from '../factory';
+import { Header, ListTile, ListTileGroup, spacing, Text, useTheme, Page, Tabs } from '../factory';
 import { Feather } from '@expo/vector-icons';
 
 const CATEGORIES = ['All', 'Electronics', 'Clothing', 'Home', 'Garden', 'Toys', 'Sports', 'Books'];
@@ -30,6 +30,15 @@ export const TabsScreen = () => {
         <Text style={{ color: colors.muted, lineHeight: 22 }}>
           This screen demonstrates the smooth tab navigation built into the premium Header component.
         </Text>
+
+        <View>
+          <Text size="lg" weight="bold" style={{ color: colors.foreground, marginBottom: spacing.s5 }}>Segmented Control</Text>
+          <Tabs 
+            tabs={['First', 'Second', 'Third']} 
+            activeTab={['First', 'Second', 'Third'].indexOf(activeTab) !== -1 ? ['First', 'Second', 'Third'].indexOf(activeTab) : 0} 
+            onChange={(index) => setActiveTab(['First', 'Second', 'Third'][index])} 
+          />
+        </View>
 
         {/* Example items using ListTile */}
         <ListTileGroup>
