@@ -1,13 +1,13 @@
-import React from 'react';
-import { View, ViewStyle } from 'react-native';
+import { View, ViewStyle, StyleProp } from 'react-native';
 import { styles } from './Divider.styles';
 import { spacing, SpacingScale } from '../factory';
 import { Text } from '../Text/Text';
+import { useTheme } from '../ThemeContext';
 
 export interface DividerProps {
   orientation?: 'horizontal' | 'vertical';
   size?: SpacingScale;
-  style?: ViewStyle | ViewStyle[];
+  style?: StyleProp<ViewStyle>;
   color?: string;
   thickness?: number;
   text?: string;
@@ -21,10 +21,11 @@ export const Divider = ({
   thickness,
   text,
 }: DividerProps) => {
+  const { colors } = useTheme();
   const isHorizontal = orientation === 'horizontal';
   
   const lineStyle: ViewStyle = {
-    ...(color && { backgroundColor: color }),
+    backgroundColor: color || colors.border,
     ...(thickness && (isHorizontal ? { height: thickness } : { width: thickness })),
   };
 

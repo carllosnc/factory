@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   View,
   Text,
@@ -14,8 +14,10 @@ import {
   LinearGradient,
   vec,
 } from "@shopify/react-native-skia";
-import { styles, HEADER_GRADIENT } from './Header.styles';
+import { styles as createStyles } from './Header.styles';
 import { useHeader } from './useHeader';
+import { useTheme } from '../ThemeContext';
+import { colors as baseColors } from '../factory';
 
 interface HeaderProps {
   title: string;
@@ -38,7 +40,16 @@ export const Header = ({
   statusBarStyle = 'light',
   statusBarTranslucent = true,
 }: HeaderProps) => {
+  const { colors, isDark } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   const { layout, scrollViewRef, onLayout, onTabLayout } = useHeader(activeTab);
+
+  const gradientColors = useMemo(() => {
+    // We use a slightly deeper gradient for the header
+    return isDark 
+      ? [baseColors.primary.t600, baseColors.primary.t900]
+      : [baseColors.primary.t500, baseColors.primary.t700];
+  }, [isDark]);
 
   return (
     <View style={styles.container} onLayout={onLayout}>
@@ -49,7 +60,7 @@ export const Header = ({
             <LinearGradient
               start={vec(0, 0)}
               end={vec(0, layout.height)}
-              colors={HEADER_GRADIENT}
+              colors={gradientColors}
             />
           </Rect>
         </Canvas>

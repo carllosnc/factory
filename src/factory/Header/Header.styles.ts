@@ -1,9 +1,9 @@
 import { StyleSheet, Platform, StatusBar } from 'react-native';
-import { colors, spacing, uiColors } from '../factory';
+import { spacing, ThemeColors } from '../factory';
 
 const STATUS_BAR_HEIGHT = Platform.OS === 'ios' ? 50 : StatusBar.currentHeight || 0;
 
-export const styles = StyleSheet.create({
+export const styles = (colors: ThemeColors) => StyleSheet.create({
   container: {
     paddingTop: STATUS_BAR_HEIGHT,
     width: '100%',
@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 17,
     fontWeight: '500',
-    color: uiColors.common.white,
+    color: 'white',
     flex: 1,
   },
   actions: {
@@ -64,12 +64,8 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.25)',
   },
   tabText: {
-    color: uiColors.common.white,
+    color: 'white',
     fontSize: 13,
     fontWeight: '600',
   },
 });
-
-export const HEADER_GRADIENT = [
-  colors.primary.t500, colors.primary.t800
-];

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import {
   StyleSheet,
-  Text,
   Pressable,
   View,
   ViewStyle,
+  StyleProp,
 } from 'react-native';
 
 import Animated from 'react-native-reanimated';
@@ -18,20 +18,21 @@ import {
   Shadow,
 } from "@shopify/react-native-skia";
 
-import { rounded, RoundedScale, buttonSizes, ButtonSize, ThemeVariant } from '../factory';
+import { rounded, RoundedScale, buttonSizes, ButtonSize, ThemeVariant, colors as baseColors } from '../factory';
 
 import {
-  styles,
+  styles as createStyles,
   SHADOW_COLOR,
   LOADING_STRIPE_COLORS,
-  getVariantColors
 } from './Button.styles';
 import { useButton } from './useButton';
+import { useTheme } from '../ThemeContext';
+import { Text } from '../Text/Text';
 
 interface ButtonProps {
   title: string;
   onPress?: () => void;
-  style?: ViewStyle;
+  style?: StyleProp<ViewStyle>;
   rounded?: RoundedScale;
   size?: ButtonSize;
   leftIcon?: React.ReactNode;
@@ -57,6 +58,9 @@ export const Button = ({
   disabled = false,
   variant = 'primary',
 }: ButtonProps) => {
+  const { colors, isDark } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
+
   const {
     layout,
     loadingOpacity,
@@ -71,6 +75,19 @@ export const Button = ({
 
   const radius = rounded[roundedToken];
   const sizeConfig = buttonSizes[size];
+
+  const variantColors = useMemo(() => {
+    switch (variant) {
+      case 'success':
+        return isDark ? [baseColors.success.t400, baseColors.success.t700] : [baseColors.success.t500, baseColors.success.t700];
+      case 'error':
+        return isDark ? [baseColors.error.t400, baseColors.error.t700] : [baseColors.error.t500, baseColors.error.t700];
+      case 'base':
+        return isDark ? [baseColors.base.t600, baseColors.base.t800] : [baseColors.base.t500, baseColors.base.t700];
+      default:
+        return isDark ? [baseColors.primary.t400, baseColors.primary.t700] : [baseColors.primary.t500, baseColors.primary.t700];
+    }
+  }, [variant, isDark]);
 
   return (
     <Pressable
@@ -102,7 +119,7 @@ export const Button = ({
               <LinearGradient
                 start={vec(0, 0)}
                 end={vec(0, layout.height || 1)}
-                colors={getVariantColors(variant)}
+                colors={variantColors}
               />
               <Shadow
                 dx={0}
@@ -141,17 +158,19 @@ export const Button = ({
             <View style={styles.leftIconContainer}>
               {React.isValidElement(leftIcon)
                 ? React.cloneElement(leftIcon as React.ReactElement<any>, {
-                    size: sizeConfig.iconSize
+                    size: sizeConfig.iconSize,
+                    color: 'white'
                   })
                 : leftIcon}
             </View>
           )}
-          <Text style={[styles.text, { fontSize: sizeConfig.fontSize }]}>{title}</Text>
+          <Text weight="medium" style={[styles.text, { fontSize: sizeConfig.fontSize, color: 'white' }]}>{title}</Text>
           {rightIcon && (
             <View style={styles.rightIconContainer}>
               {React.isValidElement(rightIcon)
                 ? React.cloneElement(rightIcon as React.ReactElement<any>, {
-                    size: sizeConfig.iconSize
+                    size: sizeConfig.iconSize,
+                    color: 'white'
                   })
                 : rightIcon}
             </View>
@@ -161,4 +180,3 @@ export const Button = ({
     </Pressable>
   );
 };
-

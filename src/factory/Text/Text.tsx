@@ -1,14 +1,14 @@
-import React from 'react';
-import { Text as RNText, TextProps as RNTextProps, TextStyle } from 'react-native';
+import { Text as RNText, TextProps as RNTextProps, TextStyle, StyleProp } from 'react-native';
 import { styles } from './Text.styles';
 import { TypographyScale } from '../factory';
+import { useTheme } from '../ThemeContext';
 
 export interface TextProps extends RNTextProps {
   size?: TypographyScale;
   weight?: 'thin' | 'extralight' | 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold' | 'black';
   color?: 'foreground' | 'muted' | 'primary' | 'success' | 'error' | 'white';
   truncate?: boolean | number;
-  style?: TextStyle | TextStyle[];
+  style?: StyleProp<TextStyle>;
 }
 
 export const Text = ({
@@ -20,6 +20,7 @@ export const Text = ({
   children,
   ...props
 }: TextProps) => {
+  const { colors } = useTheme();
   const numberOfLines = typeof truncate === 'number' ? truncate : truncate ? 1 : undefined;
 
   return (
@@ -27,7 +28,7 @@ export const Text = ({
       style={[
         styles[size],
         styles[weight],
-        styles[color],
+        { color: colors[color as keyof typeof colors] },
         style
       ]}
       numberOfLines={numberOfLines}

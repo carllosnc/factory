@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
-import { colors, uiColors, spacing, ThemeVariant } from '../factory';
+import { spacing, ThemeColors } from '../factory';
 
-export const styles = StyleSheet.create({
+export const styles = (colors: ThemeColors) => StyleSheet.create({
   container: {
     minWidth: 100,
   },
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    color: uiColors.common.white,
+    color: 'white',
     fontWeight: '500',
     letterSpacing: 0.2,
   },
@@ -49,17 +49,4 @@ export const LOADING_STRIPE_DIMENSIONS = {
   OFFSET_MULTIPLIER: 80,
   STRIPE_WIDTH: 40,
   STRIPE_HEIGHT: 40,
-};
-
-export const getVariantColors = (variant: ThemeVariant) => {
-  switch (variant) {
-    case 'success':
-      return [colors.success.t500, colors.success.t800];
-    case 'error':
-      return [colors.error.t500, colors.error.t800];
-    case 'base':
-      return [colors.base.t500, colors.base.t800];
-    default:
-      return [colors.primary.t500, colors.primary.t800];
-  }
 };

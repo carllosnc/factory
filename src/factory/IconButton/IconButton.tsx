@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   StyleSheet,
-  Text,
   Pressable,
   View,
   ViewStyle,
   TextStyle,
   LayoutChangeEvent,
+  StyleProp,
 } from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -21,7 +21,10 @@ import {
   Shadow,
 } from "@shopify/react-native-skia";
 import * as Haptics from 'expo-haptics';
-import { styles, BUTTON_SCALE_VALUE, SHADOW_COLOR, getVariantColors, ANIMATION_DURATION } from './IconButton.styles';
+import { styles as createStyles, BUTTON_SCALE_VALUE, SHADOW_COLOR, ANIMATION_DURATION } from './IconButton.styles';
+import { useTheme } from '../ThemeContext';
+import { Text } from '../Text/Text';
+import { colors as baseColors } from '../factory';
 
 interface IconButtonProps {
   icon: React.ReactNode;
@@ -29,9 +32,9 @@ interface IconButtonProps {
   badge?: number | boolean;
   onPress?: () => void;
   variant?: 'primary' | 'success' | 'error' | 'base';
-  style?: ViewStyle;
-  containerStyle?: ViewStyle;
-  labelStyle?: TextStyle;
+  style?: StyleProp<ViewStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
+  labelStyle?: StyleProp<TextStyle>;
   haptic?: boolean;
 }
 
@@ -48,6 +51,8 @@ export const IconButton = ({
   labelStyle,
   haptic = true,
 }: IconButtonProps) => {
+  const { colors, isDark } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   const [layout, setLayout] = useState({ width: 0, height: 0 });
   const scale = useSharedValue(1);
 
@@ -70,6 +75,19 @@ export const IconButton = ({
   const handlePressOut = () => {
     scale.value = withTiming(1, { duration: ANIMATION_DURATION.SCALE });
   };
+
+  const variantColors = useMemo(() => {
+    switch (variant) {
+      case 'success':
+        return isDark ? [baseColors.success.t400, baseColors.success.t700] : [baseColors.success.t500, baseColors.success.t700];
+      case 'error':
+        return isDark ? [baseColors.error.t400, baseColors.error.t700] : [baseColors.error.t500, baseColors.error.t700];
+      case 'base':
+        return isDark ? [baseColors.base.t600, baseColors.base.t800] : [baseColors.base.t500, baseColors.base.t700];
+      default:
+        return isDark ? [baseColors.primary.t400, baseColors.primary.t700] : [baseColors.primary.t500, baseColors.primary.t700];
+    }
+  }, [variant, isDark]);
 
   const renderBadge = () => {
     if (!badge) return null;
@@ -117,7 +135,7 @@ export const IconButton = ({
                 <LinearGradient
                   start={vec(0, 0)}
                   end={vec(0, layout.height || 1)}
-                  colors={getVariantColors(variant)}
+                  colors={variantColors}
                 />
                 <Shadow
                   dx={0}

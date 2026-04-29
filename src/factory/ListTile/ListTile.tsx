@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
-  Text,
   View,
   Pressable,
   ViewStyle,
+  StyleProp,
 } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
-import { styles } from './ListTile.styles';
+import { createStyles } from './ListTile.styles';
+import { Text } from '../Text/Text';
+import { useTheme } from '../ThemeContext';
 
 export interface ListTileProps {
   title: string;
@@ -16,7 +18,7 @@ export interface ListTileProps {
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   onPress?: () => void;
-  style?: ViewStyle;
+  style?: StyleProp<ViewStyle>;
   divider?: boolean;
   disabled?: boolean;
   iconWrapper?: boolean;
@@ -24,10 +26,13 @@ export interface ListTileProps {
 
 export interface ListTileGroupProps {
   children: React.ReactNode;
-  style?: ViewStyle;
+  style?: StyleProp<ViewStyle>;
 }
 
 export const ListTileGroup = ({ children, style }: ListTileGroupProps) => {
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
+
   return (
     <View style={[styles.groupContainer, style]}>
       {children}
@@ -42,6 +47,9 @@ export interface ListTileIconProps {
 }
 
 export const ListTileIcon = ({ children, wrapper = false, position = 'left' }: ListTileIconProps) => {
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
+
   return (
     <View style={[
       position === 'left' ? styles.leftIconContainer : styles.rightIconContainer,
@@ -63,6 +71,8 @@ export const ListTile = ({
   disabled = false,
   iconWrapper = false,
 }: ListTileProps) => {
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   const translateX = useSharedValue(0);
 
   const handlePressIn = () => {
@@ -107,9 +117,9 @@ export const ListTile = ({
         </ListTileIcon>
       )}
       <View style={styles.content}>
-        <Text style={styles.title} numberOfLines={1}>{title}</Text>
+        <Text weight="semibold" numberOfLines={1}>{title}</Text>
         {subtitle && (
-          <Text style={styles.subtitle} numberOfLines={2}>{subtitle}</Text>
+          <Text color="muted" size="sm" numberOfLines={2}>{subtitle}</Text>
         )}
       </View>
       {rightIcon && (
