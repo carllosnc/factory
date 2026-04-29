@@ -13,6 +13,10 @@ type RootStackParamList = {
   IconButtons: undefined;
   Typography: undefined;
   Dividers: undefined;
+  Selection: undefined;
+  Inputs: undefined;
+  Sliders: undefined;
+  BottomBar: undefined;
 };
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
@@ -46,8 +50,44 @@ export const HomeScreen = () => {
           divider
         />
         <ListTile
-          title="Header with Tabs"
-          subtitle="Smooth tab navigation in headers"
+          title="Input Fields"
+          subtitle="Text inputs with labels and errors"
+          leftIcon={<Feather name="edit-3" size={18} color={colors.foreground} />}
+          rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
+          iconWrapper
+          onPress={() => navigation.navigate('Inputs')}
+          divider
+        />
+        <ListTile
+          title="Selection Controls"
+          subtitle="Checkboxes, Radios, and Switches"
+          leftIcon={<Feather name="check-square" size={18} color={colors.foreground} />}
+          rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
+          iconWrapper
+          onPress={() => navigation.navigate('Selection')}
+          divider
+        />
+        <ListTile
+          title="Sliders"
+          subtitle="Premium Skia sliders with haptics"
+          leftIcon={<Feather name="sliders" size={18} color={colors.foreground} />}
+          rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
+          iconWrapper
+          onPress={() => navigation.navigate('Sliders')}
+          divider
+        />
+        <ListTile
+          title="Bottom Navigation"
+          subtitle="Animated bottom bar with sliding labels"
+          leftIcon={<Feather name="airplay" size={18} color={colors.foreground} />}
+          rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
+          iconWrapper
+          onPress={() => navigation.navigate('BottomBar')}
+          divider
+        />
+        <ListTile
+          title="Tabs & Segmented Control"
+          subtitle="Navigation and selection components"
           leftIcon={<Feather name="list" size={18} color={colors.foreground} />}
           rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
           iconWrapper

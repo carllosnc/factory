@@ -10,6 +10,10 @@ import { ListTileScreen } from './src/screens/ListTileScreen';
 import { IconButtonsScreen } from './src/screens/IconButtonsScreen';
 import { TextScreen } from './src/screens/TextScreen';
 import { DividerScreen } from './src/screens/DividerScreen';
+import { SelectionScreen } from './src/screens/SelectionScreen';
+import { InputsScreen } from './src/screens/InputsScreen';
+import { SlidersScreen } from './src/screens/SlidersScreen';
+import { BottomBarScreen } from './src/screens/BottomBarScreen';
 import { customTransitionSpec, customIOSInterpolator, ThemeProvider } from './src/factory';
 
 const Stack = createStackNavigator();
@@ -39,6 +43,10 @@ export default function App() {
             <Stack.Screen name="IconButtons" component={IconButtonsScreen} />
             <Stack.Screen name="Typography" component={TextScreen} />
             <Stack.Screen name="Dividers" component={DividerScreen} />
+            <Stack.Screen name="Selection" component={SelectionScreen} />
+            <Stack.Screen name="Inputs" component={InputsScreen} />
+            <Stack.Screen name="Sliders" component={SlidersScreen} />
+            <Stack.Screen name="BottomBar" component={BottomBarScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </ThemeProvider>
