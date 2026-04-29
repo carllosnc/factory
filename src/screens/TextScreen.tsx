@@ -1,99 +1,89 @@
 import React from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
-import { Header, Text, spacing, uiColors, Divider, colors } from '../factory';
-import { Ionicons } from '@expo/vector-icons';
+import { StyleSheet, View } from 'react-native';
+import { Header, Text, spacing, Divider, Page, useTheme } from '../factory';
 import { useNavigation } from '@react-navigation/native';
 
 export const TextScreen = () => {
   const navigation = useNavigation();
+  const { colors } = useTheme();
 
   return (
-    <View style={styles.container}>
-      <Header
-        title="Typography"
-        onBackPress={() => navigation.goBack()}
-      />
-      <ScrollView contentContainerStyle={styles.content}>
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Sizes</Text>
-          <View style={styles.sectionContent}>
-            <Text size="xl3" weight="bold">xl3 Bold</Text>
-            <Text size="xl2" weight="semibold">xl2 Semibold</Text>
-            <Text size="xl" weight="medium">xl Medium</Text>
-            <Text size="lg">lg Regular</Text>
-            <Text size="base">base Regular</Text>
-            <Text size="sm">sm Regular</Text>
-            <Text size="xs">xs Regular</Text>
-          </View>
+    <Page
+      scrollable
+      contentContainerStyle={styles.content}
+      header={
+        <Header
+          title="Typography"
+          onBackPress={() => navigation.goBack()}
+        />
+      }
+    >
+      <View style={styles.section}>
+        <Text size="lg" weight="bold" style={{ color: colors.foreground }}>Font Sizes</Text>
+        <View style={styles.list}>
+          <Text size="xs">Extra Small (xs)</Text>
+          <Text size="sm">Small (sm)</Text>
+          <Text size="base">Base (default)</Text>
+          <Text size="lg">Large (lg)</Text>
+          <Text size="xl">Extra Large (xl)</Text>
+          <Text size="xl2">2X Large (xl2)</Text>
+          <Text size="xl3">3X Large (xl3)</Text>
         </View>
+      </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Weights</Text>
-          <View style={styles.sectionContent}>
-            <Text weight="black">Black 900</Text>
-            <Text weight="bold">Bold 700</Text>
-            <Text weight="semibold">Semibold 600</Text>
-            <Text weight="medium">Medium 500</Text>
-            <Text weight="normal">Normal 400</Text>
-            <Text weight="light">Light 300</Text>
-            <Text weight="thin">Thin 100</Text>
-          </View>
-        </View>
+      <Divider size="s8" />
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Colors</Text>
-          <View style={styles.sectionContent}>
-            <Text color="foreground">Foreground (Primary Text)</Text>
-            <Text color="muted">Muted (Secondary Text)</Text>
-            <Text color="primary">Primary Color</Text>
-            <Text color="success">Success Color</Text>
-            <Text color="error">Error Color</Text>
-          </View>
+      <View style={styles.section}>
+        <Text size="lg" weight="bold" style={{ color: colors.foreground }}>Font Weights</Text>
+        <View style={styles.list}>
+          <Text weight="thin">Thin (100)</Text>
+          <Text weight="light">Light (300)</Text>
+          <Text weight="normal">Normal (400)</Text>
+          <Text weight="medium">Medium (500)</Text>
+          <Text weight="semibold">Semibold (600)</Text>
+          <Text weight="bold">Bold (700)</Text>
+          <Text weight="black">Black (900)</Text>
         </View>
+      </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Truncation</Text>
-          <View style={styles.sectionContent}>
-            <View style={styles.row}>
-              <Text weight="bold" size="sm">Truncate (1 line):</Text>
-              <Text color="muted" truncate>
-                This is a very long piece of text that will definitely exceed the width of a single line on most devices.
-              </Text>
-            </View>
-            <View style={styles.row}>
-              <Text weight="bold" size="sm">Truncate (2 lines):</Text>
-              <Text color="muted" truncate={2}>
-                This is another long piece of text, but this time we are allowing it to wrap to a second line before we apply the ellipsis at the end of the second line.
-              </Text>
-            </View>
-          </View>
+      <Divider size="s8" />
+
+      <View style={styles.section}>
+        <Text size="lg" weight="bold" style={{ color: colors.foreground }}>Colors</Text>
+        <View style={styles.list}>
+          <Text color="foreground">Foreground Color</Text>
+          <Text color="muted">Muted Color</Text>
+          <Text color="primary">Primary Color</Text>
+          <Text color="success">Success Color</Text>
+          <Text color="error">Error Color</Text>
         </View>
-      </ScrollView>
-    </View>
+      </View>
+
+      <Divider size="s8" />
+
+      <View style={styles.section}>
+        <Text size="lg" weight="bold" style={{ color: colors.foreground }}>Truncation</Text>
+        <View style={styles.list}>
+          <Text truncate style={{ width: 200 }}>
+            This is a long text that should be truncated with an ellipsis after one line.
+          </Text>
+          <Text truncate={2} style={{ width: 250 }}>
+            This text should be truncated after two lines of content to show how multi-line truncation works in our system.
+          </Text>
+        </View>
+      </View>
+    </Page>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: uiColors.theme.background,
-  },
   content: {
     padding: spacing.s7,
   },
   section: {
-    marginBottom: spacing.s9,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: uiColors.theme.foreground,
-    marginBottom: spacing.s5,
-  },
-  sectionContent: {
     gap: spacing.s5,
   },
-  row: {
-    gap: spacing.s2,
-  },
+  list: {
+    gap: spacing.s3,
+  }
 });
