@@ -34,5 +34,5 @@ export const styles = StyleSheet.create({
   primary: { color: colors.primary.t500 },
   success: { color: colors.success.t500 },
   error: { color: colors.error.t500 },
-  white: { color: uiColors.common.white },
+  accent: { color: uiColors.theme.accent },
 });

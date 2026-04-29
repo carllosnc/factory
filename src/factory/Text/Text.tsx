@@ -6,7 +6,7 @@ import { useTheme } from '../ThemeContext';
 export interface TextProps extends RNTextProps {
   size?: TypographyScale;
   weight?: 'thin' | 'extralight' | 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold' | 'black';
-  color?: 'foreground' | 'muted' | 'primary' | 'success' | 'error' | 'white';
+  color?: 'foreground' | 'muted' | 'primary' | 'success' | 'error' | 'accent';
   truncate?: boolean | number;
   style?: StyleProp<TextStyle>;
 }

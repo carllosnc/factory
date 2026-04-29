@@ -57,23 +57,18 @@ export const colors = {
 } as const;
 
 export const uiColors = {
-  common: {
-    white: '#ffffff',
-    black: '#000000',
-    transparent: 'transparent',
-  },
-
   theme: {
     background: colors.base.t200,
     foreground: colors.base.t800,
     surface: colors.base.t50,
-    surfaceVariant: colors.base.t200,
+    surfaceVariant: colors.base.t300,
+    surfaceIntense: colors.base.t400,
     border: colors.base.t300,
     muted: colors.base.t500,
     primary: colors.primary.t600,
     success: colors.success.t600,
     error: colors.error.t600,
-    white: '#ffffff',
+    accent: colors.base.t900,
   },
 
   dark: {
@@ -81,12 +76,13 @@ export const uiColors = {
     foreground: colors.base.t50,
     surface: colors.base.t800,
     surfaceVariant: colors.base.t700,
+    surfaceIntense: colors.base.t500,
     border: colors.base.t700,
     muted: colors.base.t400,
     primary: colors.primary.t500,
     success: colors.success.t500,
     error: colors.error.t500,
-    white: '#ffffff',
+    accent: colors.base.t50,
   }
 } as const;
 
