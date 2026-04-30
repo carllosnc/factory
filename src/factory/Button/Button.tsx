@@ -40,7 +40,7 @@ interface ButtonProps {
   haptic?: boolean;
   loading?: boolean;
   disabled?: boolean;
-  variant?: ThemeVariant;
+  variant?: ThemeVariant | 'outline';
 }
 
 const AnimatedView = Animated.createAnimatedComponent(View);
@@ -76,7 +76,10 @@ export const Button = ({
   const radius = rounded[roundedToken];
   const sizeConfig = buttonSizes[size];
 
+  const isOutline = variant === 'outline';
+
   const variantColors = useMemo(() => {
+    if (isOutline) return [];
     switch (variant) {
       case 'success':
         return isDark ? [baseColors.success.t400, baseColors.success.t700] : [baseColors.success.t500, baseColors.success.t700];
@@ -87,7 +90,9 @@ export const Button = ({
       default:
         return isDark ? [baseColors.primary.t400, baseColors.primary.t700] : [baseColors.primary.t500, baseColors.primary.t700];
     }
-  }, [variant, isDark]);
+  }, [variant, isDark, isOutline]);
+
+  const textColor = isOutline ? colors.primary : 'white';
 
   return (
     <Pressable
@@ -102,12 +107,17 @@ export const Button = ({
           borderRadius: radius,
           height: sizeConfig.height,
         },
+        isOutline && {
+          borderWidth: 1.5,
+          borderColor: colors.border,
+          backgroundColor: 'transparent',
+        },
         style,
         disabled && { opacity: 0.5 }
       ]}
     >
       <AnimatedView style={[styles.inner, animatedStyle]}>
-        {layout.width > 0 && (
+        {!isOutline && layout.width > 0 && (
           <Canvas style={[StyleSheet.absoluteFill, { borderRadius: radius }]}>
             <RoundedRect
               x={0}
@@ -159,18 +169,18 @@ export const Button = ({
               {React.isValidElement(leftIcon)
                 ? React.cloneElement(leftIcon as React.ReactElement<any>, {
                     size: sizeConfig.iconSize,
-                    color: 'white'
+                    color: textColor
                   })
                 : leftIcon}
             </View>
           )}
-          <Text weight="medium" style={[styles.text, { fontSize: sizeConfig.fontSize, color: 'white' }]}>{title}</Text>
+          <Text weight="medium" style={[styles.text, { fontSize: sizeConfig.fontSize, color: textColor }]}>{title}</Text>
           {rightIcon && (
             <View style={styles.rightIconContainer}>
               {React.isValidElement(rightIcon)
                 ? React.cloneElement(rightIcon as React.ReactElement<any>, {
                     size: sizeConfig.iconSize,
-                    color: 'white'
+                    color: textColor
                   })
                 : rightIcon}
             </View>

@@ -22,6 +22,7 @@ export interface ListTileProps {
   divider?: boolean;
   disabled?: boolean;
   iconWrapper?: boolean;
+  badge?: string | number | React.ReactNode;
 }
 
 export interface ListTileGroupProps {
@@ -70,6 +71,7 @@ export const ListTile = ({
   divider = false,
   disabled = false,
   iconWrapper = false,
+  badge,
 }: ListTileProps) => {
   const { colors } = useTheme();
   const styles = useMemo(() => createStyles(colors), [colors]);
@@ -92,6 +94,20 @@ export const ListTile = ({
     transform: [{ translateX: translateX.value }],
   }));
 
+  const renderBadge = () => {
+    if (!badge) return null;
+
+    if (typeof badge === 'string' || typeof badge === 'number') {
+      return (
+        <View style={styles.badgeContainer}>
+          <Text style={styles.badgeText}>{badge}</Text>
+        </View>
+      );
+    }
+
+    return badge;
+  };
+
   return (
     <Pressable
       onPress={onPress}
@@ -101,33 +117,39 @@ export const ListTile = ({
       testID="list-tile"
     >
       {({ pressed }) => (
-        <Animated.View
+        <View
           style={[
             styles.container,
             divider && styles.divider,
             disabled && { opacity: 0.5 },
-            pressed && !disabled && { opacity: 0.7 },
             style,
-            animatedStyle,
           ]}
         >
-      {leftIcon && (
-        <ListTileIcon wrapper={iconWrapper} position="left">
-          {leftIcon}
-        </ListTileIcon>
-      )}
-      <View style={styles.content}>
-        <Text weight="semibold" numberOfLines={1}>{title}</Text>
-        {subtitle && (
-          <Text color="muted" size="sm" numberOfLines={2}>{subtitle}</Text>
-        )}
-      </View>
-      {rightIcon && (
-        <ListTileIcon position="right">
-          {rightIcon}
-        </ListTileIcon>
-      )}
-        </Animated.View>
+          <Animated.View
+            style={[
+              { flexDirection: 'row', alignItems: 'center', flex: 1 },
+              animatedStyle,
+            ]}
+          >
+            {leftIcon && (
+              <ListTileIcon wrapper={iconWrapper} position="left">
+                {leftIcon}
+              </ListTileIcon>
+            )}
+            <View style={styles.content}>
+              <Text weight="semibold" numberOfLines={1}>{title}</Text>
+              {subtitle && (
+                <Text color="muted" size="sm" numberOfLines={2}>{subtitle}</Text>
+              )}
+            </View>
+            {renderBadge()}
+            {rightIcon && (
+              <ListTileIcon position="right">
+                {rightIcon}
+              </ListTileIcon>
+            )}
+          </Animated.View>
+        </View>
       )}
     </Pressable>
   );

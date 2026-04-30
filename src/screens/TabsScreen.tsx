@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Header, ListTile, ListTileGroup, spacing, Text, useTheme, Page, Tabs } from '../factory';
+import { Header, ListTile, ListTileGroup, spacing, Text, useTheme, Page, Tabs, BottomSheet, Button } from '../factory';
 import { Feather } from '@expo/vector-icons';
 
 const CATEGORIES = ['All', 'Electronics', 'Clothing', 'Home', 'Garden', 'Toys', 'Sports', 'Books'];
@@ -9,6 +9,7 @@ const CATEGORIES = ['All', 'Electronics', 'Clothing', 'Home', 'Garden', 'Toys', 
 export const TabsScreen = () => {
   const navigation = useNavigation();
   const [activeTab, setActiveTab] = useState('All');
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
   const { colors } = useTheme();
 
   return (
@@ -31,6 +32,12 @@ export const TabsScreen = () => {
           This screen demonstrates the smooth tab navigation built into the premium Header component.
         </Text>
 
+        <Button 
+          variant="primary" 
+          title="Open Bottom Sheet" 
+          onPress={() => setIsSheetOpen(true)} 
+        />
+
         <View>
           <Text size="lg" weight="bold" style={{ color: colors.foreground, marginBottom: spacing.s5 }}>Segmented Control</Text>
           <Tabs 
@@ -45,16 +52,46 @@ export const TabsScreen = () => {
           {[1, 2, 3, 4, 5].map((item, index) => (
             <ListTile
               key={item}
-              title={`Item ${item}`}
+              title={`Item this is another text to show the behavior in the code ${item}`}
               subtitle={`Description for item ${item} in ${activeTab}`}
               leftIcon={<Feather name="box" size={20} color={colors.foreground} />}
               iconWrapper
               rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
               divider={index !== 4}
-              onPress={() => console.log(`Pressed item ${item}`)}
+              badge={index === 0 ? 'New' : index === 1 ? 5 : undefined}
+              onPress={() => setIsSheetOpen(true)}
             />
           ))}
         </ListTileGroup>
+
+        <BottomSheet 
+          isOpen={isSheetOpen} 
+          onClose={() => setIsSheetOpen(false)}
+        >
+          <View style={{ gap: spacing.s7 }}>
+            <Text size="xl" weight="bold">Bottom Sheet Content</Text>
+            <Text color="muted">
+              This is a premium Bottom Sheet with a blurred overlay, smooth spring animations, and drag-to-dismiss support.
+            </Text>
+            <ListTileGroup>
+              <ListTile 
+                title="Option 1" 
+                leftIcon={<Feather name="settings" size={20} />} 
+                onPress={() => setIsSheetOpen(false)}
+              />
+              <ListTile 
+                title="Option 2" 
+                leftIcon={<Feather name="share" size={20} />} 
+                onPress={() => setIsSheetOpen(false)}
+              />
+            </ListTileGroup>
+            <Button 
+              variant="outline" 
+              title="Close" 
+              onPress={() => setIsSheetOpen(false)} 
+            />
+          </View>
+        </BottomSheet>
       </View>
     </Page>
   );

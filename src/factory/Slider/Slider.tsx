@@ -41,7 +41,7 @@ export const Slider = ({
 }: SliderProps) => {
   const { colors } = useTheme();
   const styles = useMemo(() => createStyles(colors), [colors]);
-  
+
   const [width, setWidth] = useState(0);
   const translateX = useSharedValue(0);
   const isPressed = useSharedValue(false);

@@ -7,10 +7,10 @@ export const createStyles = (colors: ThemeColors) => StyleSheet.create({
     alignItems: 'center',
     paddingVertical: spacing.s7,
     paddingHorizontal: spacing.s7,
-    backgroundColor: colors.surface,
+    backgroundColor: colors.surfaceLight,
   },
   groupContainer: {
-    backgroundColor: colors.surface,
+    backgroundColor: colors.surfaceLight,
     borderRadius: 16,
     overflow: 'hidden',
     borderWidth: 1,
@@ -49,5 +49,17 @@ export const createStyles = (colors: ThemeColors) => StyleSheet.create({
   divider: {
     borderBottomWidth: 1.2,
     borderBottomColor: colors.border,
+  },
+  badgeContainer: {
+    backgroundColor: colors.primary,
+    paddingHorizontal: spacing.s5,
+    paddingVertical: spacing.s3,
+    borderRadius: 99,
+    marginLeft: spacing.s5,
+  },
+  badgeText: {
+    color: colors.onPrimary,
+    fontSize: 12,
+    fontWeight: 'bold',
   },
 });

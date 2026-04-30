@@ -53,8 +53,8 @@ const TabButton = ({
     return {
       color: interpolateColor(
         progress.value,
-        [0, 1],
-        [colors.muted, colors.foreground]
+        [0, 0.9, 1],
+        [colors.muted, colors.muted, colors.onPrimary]
       ),
     };
   });
@@ -63,8 +63,8 @@ const TabButton = ({
     return {
       color: interpolateColor(
         progress.value,
-        [0, 1],
-        [colors.muted, colors.primary]
+        [0, 0.9, 1],
+        [colors.muted, colors.muted, colors.primary]
       ),
     };
   });

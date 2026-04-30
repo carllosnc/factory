@@ -18,3 +18,4 @@ export * from './Input/Input';
 export * from './Slider/Slider';
 export * from './Tabs/Tabs';
 export * from './BottomBar/BottomBar';
+export * from './BottomSheet/BottomSheet';
