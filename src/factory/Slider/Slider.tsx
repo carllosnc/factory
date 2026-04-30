@@ -117,7 +117,7 @@ export const Slider = ({
 
   return (
     <GestureDetector gesture={composed}>
-      <View style={styles.container} onLayout={onLayout}>
+      <View style={styles.container} onLayout={onLayout} testID="slider">
         <Canvas style={styles.trackContainer}>
           <Group clip={clipPath}>
             {/* Inactive Track */}

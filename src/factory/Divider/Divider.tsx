@@ -38,7 +38,7 @@ export const Divider = ({
 
   if (isHorizontal && text) {
     return (
-      <View style={[styles.container, containerStyle, style]}>
+      <View testID="divider" style={[styles.container, containerStyle, style]}>
         <View style={[styles.line, lineStyle]} />
         <View style={styles.textContainer}>
           <Text size="sm" color="muted" weight="medium">{text}</Text>
@@ -50,6 +50,7 @@ export const Divider = ({
 
   return (
     <View 
+      testID="divider"
       style={[
         isHorizontal ? styles.horizontal : styles.vertical,
         lineStyle,
