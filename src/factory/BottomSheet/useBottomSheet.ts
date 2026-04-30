@@ -51,10 +51,11 @@ export const useBottomSheet = ({ isOpen, onClose, height }: UseBottomSheetProps)
     .onUpdate((event) => {
       if (event.translationY > 0) {
         translateY.value = event.translationY;
+        opacity.value = 1 - (event.translationY / height);
       }
     })
     .onEnd((event) => {
-      if (event.translationY > height / 4 || event.velocityY > 600) {
+      if (event.translationY > height / 3 || event.velocityY > 500) {
         runOnJS(closeSheet)();
       } else {
         translateY.value = withSpring(0, { 
@@ -62,6 +63,7 @@ export const useBottomSheet = ({ isOpen, onClose, height }: UseBottomSheetProps)
           stiffness: 180,
           mass: 0.8,
         });
+        opacity.value = withTiming(1, { duration: 200 });
       }
     });
 
