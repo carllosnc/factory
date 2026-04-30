@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { Header, ListTile, ListTileGroup, spacing, useTheme, Text, Page } from '../factory';
+import { Header, ListTile, ListTileGroup, spacing, useTheme, Text, Page, typography } from '../factory';
 import { Feather } from '@expo/vector-icons';
 
 type RootStackParamList = {
@@ -17,6 +17,7 @@ type RootStackParamList = {
   Inputs: undefined;
   Sliders: undefined;
   BottomBar: undefined;
+  Spinners: undefined;
 };
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
@@ -38,7 +39,7 @@ export const HomeScreen = () => {
         />
       }
     >
-      <Text size="lg" weight="bold" style={{ marginBottom: spacing.s7, color: colors.foreground }}>Components</Text>
+      <Text style={{ fontSize: typography.lg, fontWeight: '700', marginBottom: spacing.s7, color: colors.foreground }}>Components</Text>
       <ListTileGroup>
         <ListTile
           title="Buttons Gallery"
@@ -128,6 +129,15 @@ export const HomeScreen = () => {
           rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
           iconWrapper
           onPress={() => navigation.navigate('Dividers')}
+          divider
+        />
+        <ListTile
+          title="Spinners & Loading"
+          subtitle="Skia powered loading indicators"
+          leftIcon={<Feather name="loader" size={18} color={colors.foreground} />}
+          rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
+          iconWrapper
+          onPress={() => (navigation as any).navigate('Spinners')}
         />
       </ListTileGroup>
     </Page>

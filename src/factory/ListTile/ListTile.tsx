@@ -137,9 +137,9 @@ export const ListTile = ({
               </ListTileIcon>
             )}
             <View style={styles.content}>
-              <Text weight="semibold" numberOfLines={1}>{title}</Text>
+              <Text style={styles.title} numberOfLines={1}>{title}</Text>
               {subtitle && (
-                <Text color="muted" size="sm" numberOfLines={2}>{subtitle}</Text>
+                <Text style={styles.subtitle} numberOfLines={2}>{subtitle}</Text>
               )}
             </View>
             {renderBadge()}

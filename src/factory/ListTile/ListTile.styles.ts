@@ -13,8 +13,6 @@ export const createStyles = (colors: ThemeColors) => StyleSheet.create({
     backgroundColor: colors.surfaceLight,
     borderRadius: 16,
     overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: colors.border,
   },
   content: {
     flex: 1,

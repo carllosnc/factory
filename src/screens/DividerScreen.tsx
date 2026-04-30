@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Header, Text, spacing, Divider, colors as baseColors, useTheme, Page } from '../factory';
+import { Header, Text, spacing, Divider, colors as baseColors, useTheme, Page, typography } from '../factory';
 import { useNavigation } from '@react-navigation/native';
 
 export const DividerScreen = () => {
@@ -19,30 +19,30 @@ export const DividerScreen = () => {
       }
     >
       <View style={styles.section}>
-        <Text size="lg" weight="bold" style={{ color: colors.foreground, marginBottom: spacing.s5 }}>Horizontal Dividers</Text>
+        <Text style={{ fontSize: typography.lg, fontWeight: '700', color: colors.foreground, marginBottom: spacing.s5 }}>Horizontal Dividers</Text>
         <View style={styles.sectionContent}>
-          <Text size="sm" color="muted">Default Divider</Text>
+          <Text style={{ fontSize: typography.sm, color: colors.muted }}>Default Divider</Text>
           <Divider />
           
-          <Text size="sm" color="muted">With s4 Spacing</Text>
+          <Text style={{ fontSize: typography.sm, color: colors.muted }}>With s4 Spacing</Text>
           <Divider size="s4" />
           
-          <Text size="sm" color="muted">Thick (4px) with s8 Spacing</Text>
+          <Text style={{ fontSize: typography.sm, color: colors.muted }}>Thick (4px) with s8 Spacing</Text>
           <Divider size="s8" thickness={4} />
 
-          <Text size="sm" color="muted">Custom Primary Color</Text>
+          <Text style={{ fontSize: typography.sm, color: colors.muted }}>Custom Primary Color</Text>
           <Divider size="s4" color={baseColors.primary.t500} thickness={2} />
 
-          <Text size="sm" color="muted">With Text</Text>
+          <Text style={{ fontSize: typography.sm, color: colors.muted }}>With Text</Text>
           <Divider text="OR" size="s4" />
 
-          <Text size="sm" color="muted">With Text and Custom Color</Text>
+          <Text style={{ fontSize: typography.sm, color: colors.muted }}>With Text and Custom Color</Text>
           <Divider text="CONTINUE" size="s4" color={baseColors.primary.t500} thickness={1} />
         </View>
       </View>
 
       <View style={styles.section}>
-        <Text size="lg" weight="bold" style={{ color: colors.foreground, marginBottom: spacing.s5 }}>Vertical Dividers</Text>
+        <Text style={{ fontSize: typography.lg, fontWeight: '700', color: colors.foreground, marginBottom: spacing.s5 }}>Vertical Dividers</Text>
         <View style={styles.sectionContent}>
           <View style={[styles.row, { backgroundColor: colors.surface, borderColor: colors.border }]}>
             <View style={[styles.box, { backgroundColor: colors.background }]} />
@@ -57,14 +57,14 @@ export const DividerScreen = () => {
       </View>
 
       <View style={styles.section}>
-        <Text size="lg" weight="bold" style={{ color: colors.foreground, marginBottom: spacing.s5 }}>Use Cases</Text>
+        <Text style={{ fontSize: typography.lg, fontWeight: '700', color: colors.foreground, marginBottom: spacing.s5 }}>Use Cases</Text>
         <View style={styles.sectionContent}>
           <View style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-            <Text weight="bold">Item One</Text>
+            <Text style={{ fontWeight: '700', color: colors.foreground }}>Item One</Text>
             <Divider size="s2" />
-            <Text weight="bold">Item Two</Text>
+            <Text style={{ fontWeight: '700', color: colors.foreground }}>Item Two</Text>
             <Divider size="s2" />
-            <Text weight="bold">Item Three</Text>
+            <Text style={{ fontWeight: '700', color: colors.foreground }}>Item Three</Text>
           </View>
         </View>
       </View>

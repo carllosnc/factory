@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Header, ListTile, ListTileGroup, spacing, Text, useTheme, Page, Tabs, BottomSheet, Button } from '../factory';
+import { Header, ListTile, ListTileGroup, spacing, Text, useTheme, Page, Tabs, BottomSheet, Button, typography } from '../factory';
 import { Feather } from '@expo/vector-icons';
 
 const CATEGORIES = ['All', 'Electronics', 'Clothing', 'Home', 'Garden', 'Toys', 'Sports', 'Books'];
@@ -27,7 +27,7 @@ export const TabsScreen = () => {
       }
     >
       <View style={styles.contentPlaceholder}>
-        <Text size="xl" weight="bold" style={{ color: colors.foreground }}>Active Category: {activeTab}</Text>
+        <Text style={{ fontSize: typography.xl, fontWeight: '700', color: colors.foreground }}>Active Category: {activeTab}</Text>
         <Text style={{ color: colors.muted, lineHeight: 22 }}>
           This screen demonstrates the smooth tab navigation built into the premium Header component.
         </Text>
@@ -39,7 +39,7 @@ export const TabsScreen = () => {
         />
 
         <View>
-          <Text size="lg" weight="bold" style={{ color: colors.foreground, marginBottom: spacing.s5 }}>Segmented Control</Text>
+          <Text style={{ fontSize: typography.lg, fontWeight: '700', color: colors.foreground, marginBottom: spacing.s5 }}>Segmented Control</Text>
           <Tabs 
             tabs={['First', 'Second', 'Third']} 
             activeTab={['First', 'Second', 'Third'].indexOf(activeTab) !== -1 ? ['First', 'Second', 'Third'].indexOf(activeTab) : 0} 

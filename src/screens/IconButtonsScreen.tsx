@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Header, IconButton, spacing, Text, useTheme, Page } from '../factory';
+import { Header, IconButton, spacing, Text, useTheme, Page, typography } from '../factory';
 import { Feather } from '@expo/vector-icons';
 
 export const IconButtonsScreen = () => {
@@ -20,7 +20,7 @@ export const IconButtonsScreen = () => {
       }
     >
       <View style={styles.section}>
-        <Text size="lg" weight="bold" style={{ color: colors.foreground }}>Variants</Text>
+        <Text style={{ fontSize: typography.lg, fontWeight: '700', color: colors.foreground }}>Variants</Text>
         <View style={styles.row}>
           <IconButton
             icon={<Feather name="send" size={24} />}
@@ -50,7 +50,7 @@ export const IconButtonsScreen = () => {
       </View>
 
       <View style={styles.section}>
-        <Text size="lg" weight="bold" style={{ color: colors.foreground }}>Badges</Text>
+        <Text style={{ fontSize: typography.lg, fontWeight: '700', color: colors.foreground }}>Badges</Text>
         <View style={styles.row}>
           <IconButton
             icon={<Feather name="bell" size={24} />}
@@ -77,7 +77,7 @@ export const IconButtonsScreen = () => {
       </View>
 
       <View style={styles.section}>
-        <Text size="lg" weight="bold" style={{ color: colors.foreground }}>Variations</Text>
+        <Text style={{ fontSize: typography.lg, fontWeight: '700', color: colors.foreground }}>Variations</Text>
         <View style={styles.row}>
           <IconButton
             icon={<Feather name="heart" size={24} />}

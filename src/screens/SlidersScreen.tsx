@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Header, Slider, spacing, useTheme, Text, Page } from '../factory';
+import { Header, Slider, spacing, useTheme, Text, Page, typography } from '../factory';
 
 export const SlidersScreen = () => {
   const navigation = useNavigation();
@@ -23,13 +23,13 @@ export const SlidersScreen = () => {
       }
     >
       <View style={styles.section}>
-        <Text size="lg" weight="bold" style={{ color: colors.foreground, marginBottom: spacing.s5 }}>Custom Slider</Text>
-        <Text size="sm" color="muted" style={{ marginBottom: spacing.s7 }}>
+        <Text style={{ fontSize: typography.lg, fontWeight: '700', color: colors.foreground, marginBottom: spacing.s5 }}>Custom Slider</Text>
+        <Text style={{ fontSize: typography.sm, color: colors.muted, marginBottom: spacing.s7 }}>
           A premium Skia-powered slider with haptic feedback and dynamic labels.
         </Text>
         
         <View style={styles.sliderContainer}>
-          <Text weight="medium" style={{ marginBottom: spacing.s3 }}>Volume: {value1}</Text>
+          <Text style={{ fontWeight: '500', color: colors.foreground, marginBottom: spacing.s3 }}>Volume: {value1}</Text>
           <Slider 
             value={value1} 
             onValueChange={setValue1} 
@@ -39,7 +39,7 @@ export const SlidersScreen = () => {
         </View>
 
         <View style={styles.sliderContainer}>
-          <Text weight="medium" style={{ marginBottom: spacing.s3 }}>Brightness: {value2}</Text>
+          <Text style={{ fontWeight: '500', color: colors.foreground, marginBottom: spacing.s3 }}>Brightness: {value2}</Text>
           <Slider 
             value={value2} 
             onValueChange={setValue2} 
@@ -49,7 +49,7 @@ export const SlidersScreen = () => {
         </View>
 
         <View style={styles.sliderContainer}>
-          <Text weight="medium" style={{ marginBottom: spacing.s3 }}>Contrast: {value3}</Text>
+          <Text style={{ fontWeight: '500', color: colors.foreground, marginBottom: spacing.s3 }}>Contrast: {value3}</Text>
           <Slider 
             value={value3} 
             onValueChange={setValue3} 

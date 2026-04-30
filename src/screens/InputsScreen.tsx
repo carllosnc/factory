@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Header, Input, spacing, useTheme, Text, Page } from '../factory';
+import { Header, Input, spacing, useTheme, Text, Page, typography } from '../factory';
 import { Feather } from '@expo/vector-icons';
 
 export const InputsScreen = () => {
@@ -23,7 +23,7 @@ export const InputsScreen = () => {
       }
     >
       <View style={styles.section}>
-        <Text size="lg" weight="bold" style={{ color: colors.foreground, marginBottom: spacing.s5 }}>Standard Inputs</Text>
+        <Text style={{ fontSize: typography.lg, fontWeight: '700', color: colors.foreground, marginBottom: spacing.s5 }}>Standard Inputs</Text>
         <Input 
           label="Full Name"
           placeholder="Enter your name"
@@ -40,7 +40,7 @@ export const InputsScreen = () => {
       </View>
 
       <View style={styles.section}>
-        <Text size="lg" weight="bold" style={{ color: colors.foreground, marginBottom: spacing.s5 }}>State Variants</Text>
+        <Text style={{ fontSize: typography.lg, fontWeight: '700', color: colors.foreground, marginBottom: spacing.s5 }}>State Variants</Text>
         <Input 
           label="Password"
           placeholder="••••••••"
@@ -66,7 +66,7 @@ export const InputsScreen = () => {
       </View>
 
       <View style={styles.section}>
-        <Text size="lg" weight="bold" style={{ color: colors.foreground, marginBottom: spacing.s5 }}>Numeric & Specialized</Text>
+        <Text style={{ fontSize: typography.lg, fontWeight: '700', color: colors.foreground, marginBottom: spacing.s5 }}>Numeric & Specialized</Text>
         <Input 
           label="Phone Number"
           placeholder="+1 (555) 000-0000"

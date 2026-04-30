@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Header, Checkbox, Radio, Switch, ListTileGroup, spacing, useTheme, Text, Page } from '../factory';
+import { Header, Checkbox, Radio, Switch, ListTileGroup, spacing, useTheme, Text, Page, typography } from '../factory';
 
 export const SelectionScreen = () => {
   const navigation = useNavigation();
@@ -31,7 +31,7 @@ export const SelectionScreen = () => {
       }
     >
       <View style={styles.section}>
-        <Text size="lg" weight="bold" style={{ color: colors.foreground, marginBottom: spacing.s5 }}>Switches</Text>
+        <Text style={{ fontSize: typography.lg, fontWeight: '700', color: colors.foreground, marginBottom: spacing.s5 }}>Switches</Text>
         <ListTileGroup>
           <Switch
             title="Wi-Fi"
@@ -58,7 +58,7 @@ export const SelectionScreen = () => {
       </View>
 
       <View style={styles.section}>
-        <Text size="lg" weight="bold" style={{ color: colors.foreground, marginBottom: spacing.s5 }}>Checkboxes</Text>
+        <Text style={{ fontSize: typography.lg, fontWeight: '700', color: colors.foreground, marginBottom: spacing.s5 }}>Checkboxes</Text>
         <ListTileGroup>
           <Checkbox
             title="Enable Notifications"
@@ -85,7 +85,7 @@ export const SelectionScreen = () => {
       </View>
 
       <View style={styles.section}>
-        <Text size="lg" weight="bold" style={{ color: colors.foreground, marginBottom: spacing.s5 }}>Radio Buttons</Text>
+        <Text style={{ fontSize: typography.lg, fontWeight: '700', color: colors.foreground, marginBottom: spacing.s5 }}>Radio Buttons</Text>
         <ListTileGroup>
           <Radio
             title="Standard Delivery"
@@ -111,7 +111,7 @@ export const SelectionScreen = () => {
       </View>
 
       <View style={styles.section}>
-        <Text size="lg" weight="bold" style={{ color: colors.foreground, marginBottom: spacing.s5 }}>Disabled States</Text>
+        <Text style={{ fontSize: typography.lg, fontWeight: '700', color: colors.foreground, marginBottom: spacing.s5 }}>Disabled States</Text>
         <ListTileGroup>
           <Checkbox
             title="Disabled Checkbox"
