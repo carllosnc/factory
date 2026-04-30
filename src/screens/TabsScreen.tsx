@@ -68,29 +68,7 @@ export const TabsScreen = () => {
           isOpen={isSheetOpen} 
           onClose={() => setIsSheetOpen(false)}
         >
-          <View style={{ gap: spacing.s7 }}>
-            <Text size="xl" weight="bold">Bottom Sheet Content</Text>
-            <Text color="muted">
-              This is a premium Bottom Sheet with a blurred overlay, smooth spring animations, and drag-to-dismiss support.
-            </Text>
-            <ListTileGroup>
-              <ListTile 
-                title="Option 1" 
-                leftIcon={<Feather name="settings" size={20} />} 
-                onPress={() => setIsSheetOpen(false)}
-              />
-              <ListTile 
-                title="Option 2" 
-                leftIcon={<Feather name="share" size={20} />} 
-                onPress={() => setIsSheetOpen(false)}
-              />
-            </ListTileGroup>
-            <Button 
-              variant="outline" 
-              title="Close" 
-              onPress={() => setIsSheetOpen(false)} 
-            />
-          </View>
+          <View />
         </BottomSheet>
       </View>
     </Page>

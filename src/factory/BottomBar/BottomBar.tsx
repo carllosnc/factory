@@ -43,9 +43,9 @@ const TabButton = ({
 }) => {
   const progress = useDerivedValue(() => {
     return withSpring(isActive ? 1 : 0, {
-      damping: 20,
-      stiffness: 150,
-      mass: 0.5,
+      damping: 25,
+      stiffness: 220,
+      mass: 0.6,
     });
   });
 
@@ -127,7 +127,13 @@ export const BottomBar = ({
       position: 'absolute',
       top: spacing.s5 + 2, // Centered vertically on the 44px icon container
       transform: [
-        { translateX: withSpring(targetX) },
+        { 
+          translateX: withSpring(targetX, {
+            damping: 25,
+            stiffness: 220,
+            mass: 0.6,
+          }) 
+        },
       ],
       opacity: 1,
     };
