@@ -7,6 +7,7 @@ import { Text } from 'react-native';
 jest.mock('react-native-gesture-handler', () => {
   return {
     GestureDetector: ({ children }: any) => children,
+    GestureHandlerRootView: ({ children }: any) => children,
     Gesture: {
       Pan: () => ({
         onUpdate: () => ({ onEnd: () => ({}) }),

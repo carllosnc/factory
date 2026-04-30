@@ -9,6 +9,7 @@ import {
 import Animated from 'react-native-reanimated';
 import {
   GestureDetector,
+  GestureHandlerRootView,
 } from 'react-native-gesture-handler';
 
 import { useTheme } from '../ThemeContext';
@@ -51,9 +52,9 @@ export const BottomSheet = ({
       animationType="none"
       onRequestClose={onClose}
     >
-      <View style={{ flex: 1 }}>
-        <Pressable 
-          style={StyleSheet.absoluteFill} 
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <Pressable
+          style={StyleSheet.absoluteFill}
           onPress={closeSheet}
         >
           <Animated.View style={[styles.overlay, animatedOverlayStyle]} />
@@ -67,7 +68,7 @@ export const BottomSheet = ({
             </View>
           </Animated.View>
         </GestureDetector>
-      </View>
+      </GestureHandlerRootView>
     </Modal>
   );
 };
