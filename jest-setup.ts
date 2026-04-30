@@ -38,6 +38,10 @@ jest.mock('react-native-reanimated', () => {
     useSharedValue: (val: any) => ({ value: val }),
     useAnimatedStyle: (fn: any) => fn(),
     useDerivedValue: (fn: any) => ({ value: fn() }),
+    interpolateColor: (val: any, input: any, output: any) => output[0],
+    Extrapolation: {
+      CLAMP: 'clamp',
+    },
     withTiming: (val: any) => val,
     withRepeat: (val: any) => val,
     withSpring: (val: any) => val,
@@ -59,6 +63,9 @@ jest.mock('@shopify/react-native-skia', () => {
     Rect: () => null,
     RoundedRect: () => null,
     LinearGradient: () => null,
+    Group: ({ children }: any) => children,
+    rect: (x: number, y: number, w: number, h: number) => ({ x, y, w, h }),
+    rrect: (r: any, rx: number, ry: number) => ({ rect: r, rx, ry }),
     vec: (x: number, y: number) => ({ x, y }),
     Shadow: () => null,
   };
@@ -72,7 +79,18 @@ jest.mock('expo-haptics', () => ({
   },
 }));
 
-// Mock Expo Icons
-jest.mock('@expo/vector-icons', () => ({
-  Ionicons: 'Ionicons',
+// Mock Safe Area Context
+jest.mock('react-native-safe-area-context', () => ({
+  useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }),
 }));
+
+// Mock Expo Icons
+jest.mock('@expo/vector-icons', () => {
+  const React = require('react');
+  const { Text } = require('react-native');
+  return {
+    Feather: (props: any) => React.createElement(Text, props),
+    Ionicons: (props: any) => React.createElement(Text, props),
+    MaterialIcons: (props: any) => React.createElement(Text, props),
+  };
+});
