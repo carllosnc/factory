@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import {
   View,
   Modal,
-  Dimensions,
   Pressable,
   StyleSheet,
 } from 'react-native';
@@ -13,36 +12,36 @@ import {
 } from 'react-native-gesture-handler';
 
 import { useTheme } from '../ThemeContext';
-import { createStyles } from './BottomSheet.styles';
-import { useBottomSheet } from './useBottomSheet';
+import { createStyles } from './Drawer.styles';
+import { useDrawer } from './useDrawer';
 
-const { height: SCREEN_HEIGHT } = Dimensions.get('window');
-
-export interface BottomSheetProps {
+export interface DrawerProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
-  height?: number;
+  side?: 'left' | 'right';
 }
 
-export const BottomSheet = ({
+export const Drawer = ({
   isOpen,
   onClose,
   children,
-  height = SCREEN_HEIGHT * 0.5,
-}: BottomSheetProps) => {
+  side = 'left',
+}: DrawerProps) => {
   const { colors } = useTheme();
   const styles = useMemo(() => createStyles(colors), [colors]);
 
   const {
     visible,
     panGesture,
-    animatedSheetStyle,
+    animatedDrawerStyle,
     animatedOverlayStyle,
-    closeSheet,
-  } = useBottomSheet({ isOpen, onClose, height });
+    closeDrawer,
+  } = useDrawer({ isOpen, onClose, side });
 
   if (!visible) return null;
+
+  const sideStyle = side === 'left' ? styles.drawerLeft : styles.drawerRight;
 
   return (
     <Modal
@@ -55,14 +54,13 @@ export const BottomSheet = ({
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Pressable
           style={StyleSheet.absoluteFill}
-          onPress={closeSheet}
+          onPress={closeDrawer}
         >
           <Animated.View style={[styles.overlay, animatedOverlayStyle]} />
         </Pressable>
 
         <GestureDetector gesture={panGesture}>
-          <Animated.View style={[styles.sheet, animatedSheetStyle]}>
-            <View style={styles.handle} />
+          <Animated.View style={[styles.drawer, sideStyle, animatedDrawerStyle]}>
             <View style={styles.content}>
               {children}
             </View>

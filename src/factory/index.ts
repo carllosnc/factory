@@ -19,5 +19,6 @@ export * from './Slider/Slider';
 export * from './Tabs/Tabs';
 export * from './BottomBar/BottomBar';
 export * from './BottomSheet/BottomSheet';
+export * from './Drawer/Drawer';
 export * from './Spinner/Spinner';
 export * from './Spinner/LoadingOverlay';

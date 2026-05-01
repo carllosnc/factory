@@ -19,6 +19,7 @@ type RootStackParamList = {
   Sliders: undefined;
   BottomBar: undefined;
   Spinners: undefined;
+  Drawer: undefined;
 };
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
@@ -148,6 +149,15 @@ export const HomeScreen = () => {
           rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
           iconWrapper
           onPress={() => (navigation as any).navigate('Spinners')}
+          divider
+        />
+        <ListTile
+          title="Drawer"
+          subtitle="Swipeable side panels"
+          leftIcon={<Feather name="sidebar" size={18} color={colors.foreground} />}
+          rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
+          iconWrapper
+          onPress={() => navigation.navigate('Drawer')}
         />
       </ListTileGroup>
     </Page>

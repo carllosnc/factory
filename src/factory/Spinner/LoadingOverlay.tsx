@@ -14,7 +14,7 @@ export const LoadingOverlay = ({ visible, message }: LoadingOverlayProps) => {
   const { isDark, colors } = useTheme();
 
   return (
-    <Modal transparent visible={visible} animationType="fade">
+    <Modal transparent visible={visible} animationType="fade" statusBarTranslucent={true}>
       <View style={styles.container}>
         <View
           style={[
