@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Header, ListTile, ListTileGroup, spacing, Text, useTheme, Page, Tabs, BottomSheet, Button, typography } from '../factory';
+import { Header, ListTile, ListTileGroup, spacing, Text, useTheme, Page, Tabs, typography } from '../factory';
 import { Feather } from '@expo/vector-icons';
 
 const CATEGORIES = ['All', 'Electronics', 'Clothing', 'Home', 'Garden', 'Toys', 'Sports', 'Books'];
 
 export const TabsScreen = () => {
   const navigation = useNavigation();
-  const [activeTab, setActiveTab] = useState('All');
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState('All');
+  const [activeSegment, setActiveSegment] = useState(0);
   const { colors } = useTheme();
 
   return (
@@ -18,58 +18,55 @@ export const TabsScreen = () => {
       contentContainerStyle={styles.content}
       header={
         <Header
-          title="Products"
+          title="Tabs Showcase"
           onBackPress={() => navigation.goBack()}
           tabs={CATEGORIES}
-          activeTab={activeTab}
-          onTabPress={setActiveTab}
+          activeTab={activeCategory}
+          onTabPress={setActiveCategory}
         />
       }
     >
       <View style={styles.contentPlaceholder}>
-        <Text style={{ fontSize: typography.xl, fontWeight: '700', color: colors.foreground }}>Active Category: {activeTab}</Text>
-        <Text style={{ color: colors.muted, lineHeight: 22 }}>
-          This screen demonstrates the smooth tab navigation built into the premium Header component.
-        </Text>
+        <View style={styles.section}>
+          <Text variant="h2">Header Tabs</Text>
+          <Text muted>
+            Smooth, scrollable tabs integrated directly into the Header component. Perfect for top-level navigation.
+          </Text>
+          <View style={[styles.activeDisplay, { backgroundColor: colors.surface || 'rgba(255, 255, 255, 0.05)', borderColor: colors.border || 'rgba(255, 255, 255, 0.1)' }]}>
+            <Text weight="semibold" size="lg">
+              Selected: <Text color={colors.primary}>{activeCategory}</Text>
+            </Text>
+          </View>
+        </View>
 
-        <Button 
-          variant="primary" 
-          title="Open Bottom Sheet" 
-          onPress={() => setIsSheetOpen(true)} 
-        />
-
-        <View>
-          <Text style={{ fontSize: typography.lg, fontWeight: '700', color: colors.foreground, marginBottom: spacing.s5 }}>Segmented Control</Text>
+        <View style={styles.section}>
+          <Text variant="h2">Segmented Control</Text>
+          <Text muted>
+            A premium Skia-powered segmented control for switching between views or filtering content.
+          </Text>
           <Tabs 
-            tabs={['First', 'Second', 'Third']} 
-            activeTab={['First', 'Second', 'Third'].indexOf(activeTab) !== -1 ? ['First', 'Second', 'Third'].indexOf(activeTab) : 0} 
-            onChange={(index) => setActiveTab(['First', 'Second', 'Third'][index])} 
+            tabs={['Daily', 'Weekly', 'Monthly']} 
+            activeTab={activeSegment} 
+            onChange={setActiveSegment} 
           />
         </View>
 
-        {/* Example items using ListTile */}
-        <ListTileGroup>
-          {[1, 2, 3, 4, 5].map((item, index) => (
-            <ListTile
-              key={item}
-              title={`Item this is another text to show the behavior in the code ${item}`}
-              subtitle={`Description for item ${item} in ${activeTab}`}
-              leftIcon={<Feather name="box" size={20} color={colors.foreground} />}
-              iconWrapper
-              rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
-              divider={index !== 4}
-              badge={index === 0 ? 'New' : index === 1 ? 5 : undefined}
-              onPress={() => setIsSheetOpen(true)}
-            />
-          ))}
-        </ListTileGroup>
-
-        <BottomSheet 
-          isOpen={isSheetOpen} 
-          onClose={() => setIsSheetOpen(false)}
-        >
-          <View />
-        </BottomSheet>
+        <View style={styles.section}>
+          <Text variant="h2">Interactive List</Text>
+          <ListTileGroup>
+            {[1, 2, 3].map((item, index) => (
+              <ListTile
+                key={item}
+                title={`Product Item ${item}`}
+                subtitle={`Showing results for ${activeCategory} (${['Daily', 'Weekly', 'Monthly'][activeSegment]})`}
+                leftIcon={<Feather name="package" size={20} color={colors.foreground} />}
+                iconWrapper
+                rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
+                divider={index !== 2}
+              />
+            ))}
+          </ListTileGroup>
+        </View>
       </View>
     </Page>
   );
@@ -81,5 +78,13 @@ const styles = StyleSheet.create({
   },
   contentPlaceholder: {
     gap: spacing.s9,
+  },
+  section: {
+    gap: spacing.s3,
+  },
+  activeDisplay: {
+    padding: spacing.s4,
+    borderRadius: 12,
+    borderWidth: 1,
   },
 });

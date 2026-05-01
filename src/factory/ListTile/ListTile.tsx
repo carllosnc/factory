@@ -77,17 +77,22 @@ export const ListTile = ({
   const styles = useMemo(() => createStyles(colors), [colors]);
   const translateX = useSharedValue(0);
 
-  const handlePressIn = () => {
+  const handlePress = () => {
     if (!disabled) {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-      translateX.value = withTiming(8, { duration: 100 });
+      translateX.value = withTiming(8, { duration: 100 }, () => {
+        translateX.value = withTiming(0, { duration: 150 });
+      });
+      onPress?.();
     }
   };
 
+  const handlePressIn = () => {
+    // No animation on press in
+  };
+
   const handlePressOut = () => {
-    if (!disabled) {
-      translateX.value = withTiming(0, { duration: 150 });
-    }
+    // No animation on press out
   };
 
   const animatedStyle = useAnimatedStyle(() => ({
@@ -110,7 +115,7 @@ export const ListTile = ({
 
   return (
     <Pressable
-      onPress={onPress}
+      onPress={handlePress}
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
       disabled={disabled}

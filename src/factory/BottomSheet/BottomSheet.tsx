@@ -37,7 +37,6 @@ export const BottomSheet = ({
   const {
     visible,
     panGesture,
-    tapGesture,
     animatedSheetStyle,
     animatedOverlayStyle,
     closeSheet,

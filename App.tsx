@@ -15,6 +15,7 @@ import { InputsScreen } from './src/screens/InputsScreen';
 import { SlidersScreen } from './src/screens/SlidersScreen';
 import { BottomBarScreen } from './src/screens/BottomBarScreen';
 import { SpinnerScreen } from './src/screens/SpinnerScreen';
+import { BottomSheetScreen } from './src/screens/BottomSheetScreen';
 import { customTransitionSpec, customIOSInterpolator, ThemeProvider } from './src/factory';
 
 const Stack = createStackNavigator();
@@ -40,6 +41,7 @@ export default function App() {
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Buttons" component={ButtonsScreen} />
             <Stack.Screen name="Tabs" component={TabsScreen} />
+            <Stack.Screen name="BottomSheet" component={BottomSheetScreen} />
             <Stack.Screen name="ListTiles" component={ListTileScreen} />
             <Stack.Screen name="IconButtons" component={IconButtonsScreen} />
             <Stack.Screen name="Typography" component={TextScreen} />

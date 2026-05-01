@@ -32,9 +32,9 @@ export const Spinner = ({
 
   useEffect(() => {
     progress.value = withRepeat(
-      withTiming(1, { 
-        duration: 800, 
-        easing: Easing.linear 
+      withTiming(1, {
+        duration: 800,
+        easing: Easing.linear
       }),
       -1,
       false
@@ -42,14 +42,14 @@ export const Spinner = ({
   }, []);
 
   const center = size / 2;
-  const spokeLength = size * 0.25;
-  const spokeWidth = size * 0.08;
-  const innerRadius = size * 0.22;
+  const spokeLength = size * 0.18;
+  const spokeWidth = size * 0.07;
+  const innerRadius = size * 0.25;
 
   const renderSpokes = () => {
     return Array.from({ length: spokes }).map((_, index) => {
       const angle = (index * (360 / spokes));
-      
+
       const opacity = useDerivedValue(() => {
         const activeSpoke = Math.floor(progress.value * spokes);
         const distance = (index - activeSpoke + spokes) % spokes;

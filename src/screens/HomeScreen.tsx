@@ -9,6 +9,7 @@ type RootStackParamList = {
   Home: undefined;
   Buttons: undefined;
   Tabs: undefined;
+  BottomSheet: undefined;
   ListTiles: undefined;
   IconButtons: undefined;
   Typography: undefined;
@@ -75,6 +76,15 @@ export const HomeScreen = () => {
           rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
           iconWrapper
           onPress={() => navigation.navigate('Sliders')}
+          divider
+        />
+        <ListTile
+          title="Bottom Sheet"
+          subtitle="Gesture-driven sliding panels"
+          leftIcon={<Feather name="layers" size={18} color={colors.foreground} />}
+          rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
+          iconWrapper
+          onPress={() => navigation.navigate('BottomSheet')}
           divider
         />
         <ListTile

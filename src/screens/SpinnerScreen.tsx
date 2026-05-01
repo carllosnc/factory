@@ -10,10 +10,10 @@ import {
   Spinner, 
   LoadingOverlay, 
   Button, 
-  typography,
   Divider,
   ListTile,
-  ListTileGroup
+  ListTileGroup,
+  colors as baseColors
 } from '../factory';
 import { Feather } from '@expo/vector-icons';
 
@@ -39,23 +39,23 @@ export const SpinnerScreen = () => {
       }
     >
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Standard Spinners</Text>
-        <Text style={styles.description}>
+        <Text variant="h3" weight="bold">Standard Spinners</Text>
+        <Text variant="caption" muted style={{ marginBottom: spacing.s4 }}>
           Premium Skia-powered spinners with smooth gradient trails and glow effects.
         </Text>
         
         <View style={styles.row}>
           <View style={styles.spinnerItem}>
             <Spinner size={32} />
-            <Text style={styles.label}>32px</Text>
+            <Text variant="label" weight="semibold" color={baseColors.base.t400}>32px</Text>
           </View>
           <View style={styles.spinnerItem}>
             <Spinner size={48} />
-            <Text style={styles.label}>48px</Text>
+            <Text variant="label" weight="semibold" color={baseColors.base.t400}>48px</Text>
           </View>
           <View style={styles.spinnerItem}>
             <Spinner size={64} />
-            <Text style={styles.label}>64px</Text>
+            <Text variant="label" weight="semibold" color={baseColors.base.t400}>64px</Text>
           </View>
         </View>
       </View>
@@ -63,23 +63,23 @@ export const SpinnerScreen = () => {
       <Divider size="s8" />
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Color Variants</Text>
+        <Text variant="h3" weight="bold">Color Variants</Text>
         <View style={styles.row}>
           <View style={styles.spinnerItem}>
             <Spinner color={colors.primary} size={40} />
-            <Text style={styles.label}>Primary</Text>
+            <Text variant="label" weight="semibold" color={baseColors.base.t400}>Primary</Text>
           </View>
           <View style={styles.spinnerItem}>
             <Spinner color={colors.success} size={40} />
-            <Text style={styles.label}>Success</Text>
+            <Text variant="label" weight="semibold" color={baseColors.base.t400}>Success</Text>
           </View>
           <View style={styles.spinnerItem}>
             <Spinner color={colors.error} size={40} />
-            <Text style={styles.label}>Error</Text>
+            <Text variant="label" weight="semibold" color={baseColors.base.t400}>Error</Text>
           </View>
           <View style={styles.spinnerItem}>
             <Spinner color="#9333ea" size={40} />
-            <Text style={styles.label}>Purple</Text>
+            <Text variant="label" weight="semibold" color={baseColors.base.t400}>Purple</Text>
           </View>
         </View>
       </View>
@@ -87,8 +87,8 @@ export const SpinnerScreen = () => {
       <Divider size="s8" />
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Full Screen Overlay</Text>
-        <Text style={styles.description}>
+        <Text variant="h3" weight="bold">Full Screen Overlay</Text>
+        <Text variant="caption" muted style={{ marginBottom: spacing.s4 }}>
           High-quality glassmorphism overlay with blur effect and custom messaging.
         </Text>
         <Button 
@@ -101,7 +101,7 @@ export const SpinnerScreen = () => {
       <Divider size="s8" />
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Interactive Contexts</Text>
+        <Text variant="h3" weight="bold">Interactive Contexts</Text>
         <ListTileGroup>
           <ListTile
             title="Fetching Data"
@@ -131,17 +131,6 @@ const styles = StyleSheet.create({
   section: {
     gap: spacing.s5,
   },
-  sectionTitle: {
-    fontSize: typography.lg,
-    fontWeight: '700',
-    color: '#1e293b',
-  },
-  description: {
-    fontSize: typography.sm,
-    color: '#64748b',
-    lineHeight: 20,
-    marginBottom: spacing.s4,
-  },
   row: {
     flexDirection: 'row',
     alignItems: 'flex-end',
@@ -150,10 +139,5 @@ const styles = StyleSheet.create({
   spinnerItem: {
     alignItems: 'center',
     gap: spacing.s3,
-  },
-  label: {
-    fontSize: typography.xs,
-    color: '#94a3b8',
-    fontWeight: '600',
   },
 });
