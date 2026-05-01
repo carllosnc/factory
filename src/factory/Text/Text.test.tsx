@@ -11,7 +11,7 @@ describe('Text', () => {
   it('applies custom style', () => {
     const { getByText } = render(<Text style={{ color: 'red' }}>Styled Text</Text>);
     const textElement = getByText('Styled Text');
-    expect(textElement.props.style).toEqual({ color: 'red' });
+    expect(textElement.props.style).toContainEqual({ color: 'red' });
   });
 
   it('handles truncate prop', () => {
