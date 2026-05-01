@@ -11,6 +11,9 @@ import {
   GestureHandlerRootView,
 } from 'react-native-gesture-handler';
 
+import { StatusBar } from 'expo-status-bar';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { useTheme } from '../ThemeContext';
 import { createStyles } from './Drawer.styles';
 import { useDrawer } from './useDrawer';
@@ -20,6 +23,7 @@ export interface DrawerProps {
   onClose: () => void;
   children: React.ReactNode;
   side?: 'left' | 'right';
+  statusBarStyle?: 'light' | 'dark' | 'auto';
 }
 
 export const Drawer = ({
@@ -27,8 +31,10 @@ export const Drawer = ({
   onClose,
   children,
   side = 'left',
+  statusBarStyle = 'dark',
 }: DrawerProps) => {
   const { colors } = useTheme();
+  const insets = useSafeAreaInsets();
   const styles = useMemo(() => createStyles(colors), [colors]);
 
   const {
@@ -51,6 +57,7 @@ export const Drawer = ({
       onRequestClose={onClose}
       statusBarTranslucent={true}
     >
+      <StatusBar style={statusBarStyle} animated />
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Pressable
           style={StyleSheet.absoluteFill}
@@ -61,7 +68,7 @@ export const Drawer = ({
 
         <GestureDetector gesture={panGesture}>
           <Animated.View style={[styles.drawer, sideStyle, animatedDrawerStyle]}>
-            <View style={styles.content}>
+            <View style={[styles.content, { paddingTop: insets.top + 20 || 64 }]}>
               {children}
             </View>
           </Animated.View>
