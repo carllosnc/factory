@@ -65,8 +65,7 @@ export const Accordion = ({
   const { colors } = useTheme();
   const styles = useMemo(() => createStyles(colors), [colors]);
   const [expanded, setExpanded] = useState(initiallyExpanded);
-  const [contentHeight, setContentHeight] = useState(0);
-
+  const sharedContentHeight = useSharedValue(0);
   const progress = useSharedValue(initiallyExpanded ? 1 : 0);
 
   const toggle = () => {
@@ -77,8 +76,8 @@ export const Accordion = ({
     setExpanded(newValue);
 
     progress.value = withSpring(newValue ? 1 : 0, {
-      damping: 25,
-      stiffness: 350,
+      damping: 30,
+      stiffness: 300,
       mass: 0.6,
       overshootClamping: true,
     });
@@ -87,12 +86,14 @@ export const Accordion = ({
   };
 
   const bodyStyle = useAnimatedStyle(() => {
+    const height = progress.value * sharedContentHeight.value;
+
     return {
-      height: progress.value * contentHeight,
+      height: height,
       opacity: interpolate(
         progress.value,
-        [0, 0.4, 1],
-        [0, 0, 1],
+        [0, 0.3, 1],
+        [0, 1, 1],
         Extrapolate.CLAMP
       ),
       transform: [
@@ -100,7 +101,7 @@ export const Accordion = ({
           translateY: interpolate(
             progress.value,
             [0, 1],
-            [-12, 0],
+            [-10, 0],
             Extrapolate.CLAMP
           ),
         },
@@ -152,7 +153,7 @@ export const Accordion = ({
       <Animated.View style={[styles.expandContainer, bodyStyle]}>
         <View
           onLayout={(e) => {
-            setContentHeight(e.nativeEvent.layout.height);
+            sharedContentHeight.value = e.nativeEvent.layout.height;
           }}
           style={styles.expandContent}
         >

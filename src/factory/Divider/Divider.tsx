@@ -6,6 +6,8 @@ import { useTheme } from '../ThemeContext';
 
 export interface DividerProps {
   orientation?: 'horizontal' | 'vertical';
+  spacing?: SpacingScale;
+  /** @deprecated Use spacing instead */
   size?: SpacingScale;
   style?: StyleProp<ViewStyle>;
   color?: string;
@@ -16,6 +18,7 @@ export interface DividerProps {
 
 export const Divider = ({
   orientation = 'horizontal',
+  spacing: spacingProp,
   size,
   style,
   color,
@@ -25,6 +28,7 @@ export const Divider = ({
 }: DividerProps) => {
   const { colors } = useTheme();
   const isHorizontal = orientation === 'horizontal';
+  const finalSpacing = spacingProp || size;
 
   const lineStyle: ViewStyle = {
     backgroundColor: color || colors.border,
@@ -32,9 +36,9 @@ export const Divider = ({
   };
 
   const containerStyle: ViewStyle = {
-    ...(size && (isHorizontal
-      ? { marginVertical: spacing[size] }
-      : { marginHorizontal: spacing[size] }
+    ...(finalSpacing && (isHorizontal
+      ? { marginVertical: spacing[finalSpacing] }
+      : { marginHorizontal: spacing[finalSpacing] }
     )),
   };
 

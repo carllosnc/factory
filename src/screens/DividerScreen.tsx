@@ -25,19 +25,19 @@ export const DividerScreen = () => {
           <Divider />
           
           <Text style={{ fontSize: typography.sm, color: colors.muted }}>With s4 Spacing</Text>
-          <Divider size="s4" />
+          <Divider spacing="s4" />
           
           <Text style={{ fontSize: typography.sm, color: colors.muted }}>Thick (4px) with s8 Spacing</Text>
-          <Divider size="s8" thickness={4} />
+          <Divider spacing="s8" thickness={4} />
 
           <Text style={{ fontSize: typography.sm, color: colors.muted }}>Custom Primary Color</Text>
-          <Divider size="s4" color={baseColors.primary.t500} thickness={2} />
+          <Divider spacing="s4" color={baseColors.primary.t500} thickness={2} />
 
           <Text style={{ fontSize: typography.sm, color: colors.muted }}>With Text</Text>
-          <Divider text="OR" size="s4" />
+          <Divider text="OR" spacing="s4" />
 
           <Text style={{ fontSize: typography.sm, color: colors.muted }}>With Text and Custom Color</Text>
-          <Divider text="CONTINUE" size="s4" color={baseColors.primary.t500} thickness={1} />
+          <Divider text="CONTINUE" spacing="s4" color={baseColors.primary.t500} thickness={1} />
         </View>
       </View>
 
@@ -61,9 +61,9 @@ export const DividerScreen = () => {
         <View style={styles.sectionContent}>
           <View style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.border }]}>
             <Text style={{ fontWeight: '700', color: colors.foreground }}>Item One</Text>
-            <Divider size="s2" />
+            <Divider spacing="s2" />
             <Text style={{ fontWeight: '700', color: colors.foreground }}>Item Two</Text>
-            <Divider size="s2" />
+            <Divider spacing="s2" />
             <Text style={{ fontWeight: '700', color: colors.foreground }}>Item Three</Text>
           </View>
         </View>

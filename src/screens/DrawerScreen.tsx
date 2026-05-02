@@ -69,7 +69,7 @@ export const DrawerScreen = () => {
         side="left"
       >
         <Text variant="h2">Menu</Text>
-        <Divider spacing="md" />
+        <Divider spacing="s7" />
         <ListTile
           title="Home"
           leftIcon={<Feather name="home" size={18} color={colors.foreground} />}
@@ -102,7 +102,7 @@ export const DrawerScreen = () => {
         side="right"
       >
         <Text variant="h2">Filters</Text>
-        <Divider spacing="md" />
+        <Divider spacing="s7" />
         <View style={{ gap: spacing.s6, flex: 1 }}>
           <Text muted>Apply filters to refine your results.</Text>
           <Button
