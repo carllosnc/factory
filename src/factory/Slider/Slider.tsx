@@ -1,16 +1,10 @@
-import React, { useMemo, useState } from 'react';
-import { View, LayoutChangeEvent } from 'react-native';
-import {
-  Gesture,
-  GestureDetector,
-} from 'react-native-gesture-handler';
+import React, { useMemo } from 'react';
+import { View } from 'react-native';
+import { GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
-  useSharedValue,
   useAnimatedStyle,
   useDerivedValue,
   withSpring,
-  runOnJS,
-  clamp
 } from 'react-native-reanimated';
 import {
   Canvas,
@@ -19,10 +13,10 @@ import {
   rect,
   rrect,
 } from '@shopify/react-native-skia';
-import * as Haptics from 'expo-haptics';
 
 import { createStyles } from './Slider.styles';
 import { useTheme } from '../ThemeContext';
+import { useSlider } from './useSlider';
 
 export interface SliderProps {
   min?: number;
@@ -42,65 +36,13 @@ export const Slider = ({
   const { colors } = useTheme();
   const styles = useMemo(() => createStyles(colors), [colors]);
 
-  const [width, setWidth] = useState(0);
-  const translateX = useSharedValue(0);
-  const isPressed = useSharedValue(false);
-
-  const startX = useSharedValue(0);
-
-  // Synchronize internal value with prop
-  React.useEffect(() => {
-    if (width > 0 && !isPressed.value) {
-      const percentage = (value - min) / (max - min);
-      translateX.value = percentage * width;
-    }
-  }, [value, width, min, max]);
-
-  const onLayout = (event: LayoutChangeEvent) => {
-    const w = event.nativeEvent.layout.width;
-    setWidth(w);
-    const percentage = (value - min) / (max - min);
-    translateX.value = percentage * w;
-  };
-
-  const derivedValue = useDerivedValue(() => {
-    if (width === 0) return min;
-    const percentage = translateX.value / width;
-    const rawValue = min + percentage * (max - min);
-    const steppedValue = Math.round(rawValue / step) * step;
-    return clamp(steppedValue, min, max);
-  });
-
-  const handleValueChange = (v: number) => {
-    onValueChange?.(v);
-  };
-
-  const gesture = Gesture.Pan()
-    .onBegin(() => {
-      isPressed.value = true;
-      startX.value = translateX.value;
-      runOnJS(Haptics.impactAsync)(Haptics.ImpactFeedbackStyle.Light);
-    })
-    .onUpdate((event) => {
-      translateX.value = clamp(startX.value + event.translationX, 0, width);
-      runOnJS(handleValueChange)(derivedValue.value);
-    })
-    .onEnd(() => {
-      isPressed.value = false;
-    });
-
-  const tapGesture = Gesture.Tap()
-    .onBegin((event) => {
-      isPressed.value = true;
-      translateX.value = clamp(event.x, 0, width);
-      runOnJS(handleValueChange)(derivedValue.value);
-      runOnJS(Haptics.impactAsync)(Haptics.ImpactFeedbackStyle.Light);
-    })
-    .onFinalize(() => {
-      isPressed.value = false;
-    });
-
-  const composed = Gesture.Exclusive(gesture, tapGesture);
+  const {
+    width,
+    translateX,
+    isPressed,
+    onLayout,
+    gesture,
+  } = useSlider({ min, max, value, step, onValueChange });
 
   const thumbStyle = useAnimatedStyle(() => ({
     transform: [
@@ -116,7 +58,7 @@ export const Slider = ({
   });
 
   return (
-    <GestureDetector gesture={composed}>
+    <GestureDetector gesture={gesture}>
       <View style={styles.container} onLayout={onLayout} testID="slider">
         <Canvas style={styles.trackContainer}>
           <Group clip={clipPath}>
