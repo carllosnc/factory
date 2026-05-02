@@ -22,3 +22,4 @@ export * from './BottomSheet/BottomSheet';
 export * from './Drawer/Drawer';
 export * from './Spinner/Spinner';
 export * from './Spinner/LoadingOverlay';
+export * from './Accordion/Accordion';

@@ -7,7 +7,10 @@ export const styles = (colors: ThemeColors) => StyleSheet.create({
   container: {
     paddingTop: STATUS_BAR_HEIGHT,
     width: '100%',
+    backgroundColor: colors.surface,
     overflow: 'hidden',
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
   },
   inner: {
     paddingTop: spacing.s7,
@@ -32,7 +35,7 @@ export const styles = (colors: ThemeColors) => StyleSheet.create({
   title: {
     fontSize: 17,
     fontWeight: '500',
-    color: 'white',
+    color: colors.foreground,
     flex: 1,
   },
   actions: {
@@ -58,14 +61,17 @@ export const styles = (colors: ThemeColors) => StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.12)',
+    backgroundColor: colors.surfaceVariant,
   },
   activeTab: {
-    backgroundColor: 'rgba(255, 255, 255, 0.25)',
+    backgroundColor: colors.primary,
   },
   tabText: {
-    color: 'white',
+    color: colors.foreground,
     fontSize: 13,
     fontWeight: '600',
+  },
+  activeTabText: {
+    color: colors.onPrimary,
   },
 });

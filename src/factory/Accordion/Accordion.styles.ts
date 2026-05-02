@@ -3,16 +3,20 @@ import { spacing, ThemeColors } from '../factory';
 
 export const createStyles = (colors: ThemeColors) => StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: spacing.s7,
-    paddingHorizontal: spacing.s7,
     backgroundColor: colors.surface,
+    overflow: 'hidden',
   },
   groupContainer: {
     backgroundColor: colors.surface,
     borderRadius: 16,
     overflow: 'hidden',
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: spacing.s7,
+    paddingHorizontal: spacing.s7,
+    backgroundColor: colors.surface,
   },
   content: {
     flex: 1,
@@ -37,27 +41,24 @@ export const createStyles = (colors: ThemeColors) => StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 10,
-    backgroundColor: 'transparent',
+    backgroundColor: colors.surfaceVariant,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   rightIconContainer: {
     marginLeft: spacing.s6,
     justifyContent: 'center',
     alignItems: 'center',
   },
+  expandContainer: {
+    overflow: 'hidden',
+  },
+  expandContent: {
+    paddingHorizontal: spacing.s7,
+    paddingBottom: spacing.s7,
+  },
   divider: {
     borderBottomWidth: 1.2,
     borderBottomColor: colors.border,
-  },
-  badgeContainer: {
-    backgroundColor: colors.primary,
-    paddingHorizontal: spacing.s5,
-    paddingVertical: spacing.s3,
-    borderRadius: 99,
-    marginLeft: spacing.s5,
-  },
-  badgeText: {
-    color: colors.onPrimary,
-    fontSize: 12,
-    fontWeight: 'bold',
   },
 });

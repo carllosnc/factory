@@ -8,16 +8,9 @@ import {
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Feather } from '@expo/vector-icons';
-import {
-  Canvas,
-  Rect,
-  LinearGradient,
-  vec,
-} from "@shopify/react-native-skia";
 import { styles as createStyles } from './Header.styles';
 import { useHeader } from './useHeader';
 import { useTheme } from '../ThemeContext';
-import { colors as baseColors } from '../factory';
 
 interface HeaderProps {
   title: string;
@@ -37,34 +30,16 @@ export const Header = ({
   tabs = [],
   activeTab,
   onTabPress,
-  statusBarStyle = 'light',
+  statusBarStyle = 'auto',
   statusBarTranslucent = true,
 }: HeaderProps) => {
-  const { colors, isDark } = useTheme();
+  const { colors } = useTheme();
   const styles = useMemo(() => createStyles(colors), [colors]);
   const { layout, scrollViewRef, onLayout, onTabLayout } = useHeader(activeTab);
-
-  const gradientColors = useMemo(() => {
-    // We use a slightly deeper gradient for the header
-    return isDark 
-      ? [baseColors.primary.t600, baseColors.primary.t900]
-      : [baseColors.primary.t500, baseColors.primary.t700];
-  }, [isDark]);
 
   return (
     <View style={styles.container} onLayout={onLayout}>
       <StatusBar style={statusBarStyle} translucent={statusBarTranslucent} />
-      {layout.width > 0 && (
-        <Canvas style={StyleSheet.absoluteFill}>
-          <Rect x={0} y={0} width={layout.width} height={layout.height}>
-            <LinearGradient
-              start={vec(0, 0)}
-              end={vec(0, layout.height)}
-              colors={gradientColors}
-            />
-          </Rect>
-        </Canvas>
-      )}
       <View style={styles.inner}>
         <View style={styles.topSection}>
           <View style={styles.titleContainer}>
@@ -77,7 +52,7 @@ export const Header = ({
                   { opacity: pressed ? 0.7 : 1 }
                 ]}
               >
-                <Feather name="chevron-left" size={24} color="white" />
+                <Feather name="chevron-left" size={24} color={colors.foreground} />
               </Pressable>
             )}
             <Text style={styles.title} numberOfLines={1}>{title}</Text>
@@ -92,7 +67,11 @@ export const Header = ({
                   { opacity: pressed ? 0.7 : 1 }
                 ]}
               >
-                {action.icon}
+                {React.isValidElement(action.icon)
+                  ? React.cloneElement(action.icon as React.ReactElement<any>, {
+                      color: colors.foreground,
+                    })
+                  : action.icon}
               </Pressable>
             ))}
           </View>
@@ -120,7 +99,7 @@ export const Header = ({
                     { opacity: pressed ? 0.8 : 1 }
                   ]}
                 >
-                  <Text style={styles.tabText}>{tab}</Text>
+                  <Text style={[styles.tabText, activeTab === tab && styles.activeTabText]}>{tab}</Text>
                 </Pressable>
               ))}
             </View>

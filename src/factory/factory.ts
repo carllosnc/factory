@@ -76,7 +76,7 @@ export const uiColors = {
   dark: {
     background: colors.base.t900,
     foreground: colors.base.t50,
-    surfaceLight: colors.base.t800,
+    surfaceLight: colors.base.t900,
     surface: colors.base.t800,
     surfaceVariant: colors.base.t700,
     surfaceIntense: colors.base.t500,
