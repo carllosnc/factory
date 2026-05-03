@@ -84,7 +84,7 @@ export const HomeScreen = () => {
         <ListTile
           title="Bottom Sheet"
           subtitle="Gesture-driven sliding panels"
-          leftIcon={<Feather name="layers" size={18} color={colors.foreground} />}
+          leftIcon={<Feather name="maximize-2" size={18} color={colors.foreground} />}
           rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
           iconWrapper
           onPress={() => navigation.navigate('BottomSheet')}
@@ -93,7 +93,7 @@ export const HomeScreen = () => {
         <ListTile
           title="Bottom Navigation"
           subtitle="Animated bottom bar with sliding labels"
-          leftIcon={<Feather name="airplay" size={18} color={colors.foreground} />}
+          leftIcon={<Feather name="navigation" size={18} color={colors.foreground} />}
           rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
           iconWrapper
           onPress={() => navigation.navigate('BottomBar')}
@@ -102,7 +102,7 @@ export const HomeScreen = () => {
         <ListTile
           title="Tabs & Segmented Control"
           subtitle="Navigation and selection components"
-          leftIcon={<Feather name="list" size={18} color={colors.foreground} />}
+          leftIcon={<Feather name="columns" size={18} color={colors.foreground} />}
           rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
           iconWrapper
           onPress={() => navigation.navigate('Tabs')}
@@ -111,7 +111,7 @@ export const HomeScreen = () => {
         <ListTile
           title="ListTile Components"
           subtitle="Showcase of interactive list items"
-          leftIcon={<Feather name="layers" size={18} color={colors.foreground} />}
+          leftIcon={<Feather name="align-justify" size={18} color={colors.foreground} />}
           rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
           iconWrapper
           onPress={() => navigation.navigate('ListTiles')}
@@ -120,7 +120,7 @@ export const HomeScreen = () => {
         <ListTile
           title="Icon Buttons"
           subtitle="Buttons with badges and labels"
-          leftIcon={<Feather name="bell" size={18} color={colors.foreground} />}
+          leftIcon={<Feather name="command" size={18} color={colors.foreground} />}
           rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
           iconWrapper
           onPress={() => navigation.navigate('IconButtons')}
