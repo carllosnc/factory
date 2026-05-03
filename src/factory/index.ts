@@ -23,3 +23,4 @@ export * from './Drawer/Drawer';
 export * from './Spinner/Spinner';
 export * from './Spinner/LoadingOverlay';
 export * from './Accordion/Accordion';
+export * from './Toast/Toast';

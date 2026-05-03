@@ -21,6 +21,7 @@ type RootStackParamList = {
   Spinners: undefined;
   Drawer: undefined;
   Accordions: undefined;
+  Toasts: undefined;
 };
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
@@ -168,6 +169,15 @@ export const HomeScreen = () => {
           rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
           iconWrapper
           onPress={() => navigation.navigate('Accordions')}
+          divider
+        />
+        <ListTile
+          title="Toasts"
+          subtitle="Status notifications and alerts"
+          leftIcon={<Feather name="bell" size={18} color={colors.foreground} />}
+          rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
+          iconWrapper
+          onPress={() => navigation.navigate('Toasts')}
         />
       </ListTileGroup>
     </Page>
