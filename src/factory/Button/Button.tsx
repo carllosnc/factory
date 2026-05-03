@@ -14,15 +14,12 @@ import {
   Canvas,
   RoundedRect,
   LinearGradient,
-  vec,
-  Shadow,
 } from "@shopify/react-native-skia";
 
 import { rounded, RoundedScale, buttonSizes, ButtonSize, ThemeVariant, colors as baseColors } from '../factory';
 
 import {
   styles as createStyles,
-  SHADOW_COLOR,
   LOADING_STRIPE_COLORS,
 } from './Button.styles';
 import { useButton } from './useButton';
@@ -40,7 +37,7 @@ interface ButtonProps {
   haptic?: boolean;
   loading?: boolean;
   disabled?: boolean;
-  variant?: ThemeVariant | 'outline';
+  variant?: 'primary' | 'base' | 'info' | 'success' | 'error' | 'danger' | 'outline';
 }
 
 const AnimatedView = Animated.createAnimatedComponent(View);
@@ -78,17 +75,21 @@ export const Button = ({
 
   const isOutline = variant === 'outline';
 
-  const variantColors = useMemo(() => {
-    if (isOutline) return [];
+  const variantColor = useMemo(() => {
+    if (isOutline) return 'transparent';
     switch (variant) {
       case 'success':
-        return isDark ? [baseColors.success.t400, baseColors.success.t700] : [baseColors.success.t500, baseColors.success.t700];
+        return isDark ? baseColors.success.t900 : baseColors.success.t600;
       case 'error':
-        return isDark ? [baseColors.error.t400, baseColors.error.t700] : [baseColors.error.t500, baseColors.error.t700];
+      case 'danger':
+        return isDark ? baseColors.error.t900 : baseColors.error.t600;
+      case 'info':
+        return isDark ? baseColors.primary.t900 : baseColors.primary.t600;
       case 'base':
-        return isDark ? [baseColors.base.t600, baseColors.base.t800] : [baseColors.base.t500, baseColors.base.t700];
+        return isDark ? baseColors.base.t700 : baseColors.base.t500;
+      case 'primary':
       default:
-        return isDark ? [baseColors.primary.t400, baseColors.primary.t700] : [baseColors.primary.t500, baseColors.primary.t700];
+        return isDark ? baseColors.primary.t500 : baseColors.primary.t600;
     }
   }, [variant, isDark, isOutline]);
 
@@ -125,20 +126,8 @@ export const Button = ({
               width={layout.width}
               height={layout.height}
               r={radius}
-            >
-              <LinearGradient
-                start={vec(0, 0)}
-                end={vec(0, layout.height || 1)}
-                colors={variantColors}
-              />
-              <Shadow
-                dx={0}
-                dy={4}
-                blur={3}
-                color={SHADOW_COLOR}
-                inner
-              />
-            </RoundedRect>
+              color={variantColor}
+            />
             <RoundedRect
               x={0}
               y={0}

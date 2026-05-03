@@ -115,19 +115,19 @@ export const spacing = {
 
 export const buttonSizes = {
   sm: {
-    height: 36,
+    height: 32,
     paddingHorizontal: spacing.s4,
-    fontSize: 14,
+    fontSize: 13,
     iconSize: 16,
   },
   md: {
-    height: 52,
+    height: 42,
     paddingHorizontal: spacing.s6,
     fontSize: 16,
     iconSize: 20,
   },
   lg: {
-    height: 64,
+    height: 48,
     paddingHorizontal: spacing.s8,
     fontSize: 18,
     iconSize: 24,

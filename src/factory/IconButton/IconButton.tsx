@@ -16,12 +16,9 @@ import Animated, {
 import {
   Canvas,
   RoundedRect,
-  LinearGradient,
-  vec,
-  Shadow,
 } from "@shopify/react-native-skia";
 import * as Haptics from 'expo-haptics';
-import { styles as createStyles, BUTTON_SCALE_VALUE, SHADOW_COLOR, ANIMATION_DURATION } from './IconButton.styles';
+import { styles as createStyles, BUTTON_SCALE_VALUE, ANIMATION_DURATION } from './IconButton.styles';
 import { useTheme } from '../ThemeContext';
 import { Text } from '../Text/Text';
 import { colors as baseColors } from '../factory';
@@ -31,7 +28,7 @@ interface IconButtonProps {
   label?: string;
   badge?: number | boolean;
   onPress?: () => void;
-  variant?: 'primary' | 'success' | 'error' | 'base';
+  variant?: 'primary' | 'success' | 'error' | 'base' | 'info' | 'danger';
   style?: StyleProp<ViewStyle>;
   containerStyle?: StyleProp<ViewStyle>;
   labelStyle?: StyleProp<TextStyle>;
@@ -76,16 +73,20 @@ export const IconButton = ({
     scale.value = withTiming(1, { duration: ANIMATION_DURATION.SCALE });
   };
 
-  const variantColors = useMemo(() => {
+  const variantColor = useMemo(() => {
     switch (variant) {
       case 'success':
-        return isDark ? [baseColors.success.t400, baseColors.success.t700] : [baseColors.success.t500, baseColors.success.t700];
+        return isDark ? baseColors.success.t900 : baseColors.success.t600;
       case 'error':
-        return isDark ? [baseColors.error.t400, baseColors.error.t700] : [baseColors.error.t500, baseColors.error.t700];
+      case 'danger':
+        return isDark ? baseColors.error.t900 : baseColors.error.t600;
+      case 'info':
+        return isDark ? baseColors.primary.t900 : baseColors.primary.t600;
       case 'base':
-        return isDark ? [baseColors.base.t600, baseColors.base.t800] : [baseColors.base.t500, baseColors.base.t700];
+        return isDark ? baseColors.base.t700 : baseColors.base.t500;
+      case 'primary':
       default:
-        return isDark ? [baseColors.primary.t400, baseColors.primary.t700] : [baseColors.primary.t500, baseColors.primary.t700];
+        return isDark ? baseColors.primary.t500 : baseColors.primary.t600;
     }
   }, [variant, isDark]);
 
@@ -131,20 +132,8 @@ export const IconButton = ({
                 width={layout.width}
                 height={layout.height}
                 r={radius}
-              >
-                <LinearGradient
-                  start={vec(0, 0)}
-                  end={vec(0, layout.height || 1)}
-                  colors={variantColors}
-                />
-                <Shadow
-                  dx={0}
-                  dy={4}
-                  blur={3}
-                  color={SHADOW_COLOR}
-                  inner
-                />
-              </RoundedRect>
+                color={variantColor}
+              />
             </Canvas>
           )}
           <View style={styles.iconContainer}>
