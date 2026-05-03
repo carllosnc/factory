@@ -16,7 +16,13 @@ import {
   LinearGradient,
 } from "@shopify/react-native-skia";
 
-import { rounded, RoundedScale, buttonSizes, ButtonSize, ThemeVariant, colors as baseColors } from '../factory';
+import {
+  rounded,
+  RoundedScale,
+  buttonSizes,
+  ButtonSize,
+  colors as baseColors
+} from '../factory';
 
 import {
   styles as createStyles,
@@ -93,7 +99,7 @@ export const Button = ({
     }
   }, [variant, isDark, isOutline]);
 
-  const textColor = isOutline ? colors.primary : 'white';
+  const textColor = isOutline ? colors.primary : colors.foregroundInverted;
 
   return (
     <Pressable

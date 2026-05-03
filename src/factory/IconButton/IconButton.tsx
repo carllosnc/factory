@@ -102,7 +102,7 @@ export const IconButton = ({
     }
   }, [variant, isDark, isOutline]);
 
-  const textColor = isOutline ? colors.primary : 'white';
+  const textColor = isOutline ? colors.primary : colors.foregroundInverted;
 
   const renderBadge = () => {
     if (!badge || loading) return null;
