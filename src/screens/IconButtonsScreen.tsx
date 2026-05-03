@@ -77,6 +77,57 @@ export const IconButtonsScreen = () => {
       </View>
 
       <View style={styles.section}>
+        <Text style={{ fontSize: typography.lg, fontWeight: '700', color: colors.foreground }}>Sizes</Text>
+        <View style={styles.row}>
+          <IconButton
+            icon={<Feather name="plus" size={24} />}
+            label="Small"
+            size="sm"
+            variant="primary"
+            onPress={() => {}}
+          />
+          <IconButton
+            icon={<Feather name="plus" size={24} />}
+            label="Medium"
+            size="md"
+            variant="primary"
+            onPress={() => {}}
+          />
+          <IconButton
+            icon={<Feather name="plus" size={24} />}
+            label="Large"
+            size="lg"
+            variant="primary"
+            onPress={() => {}}
+          />
+        </View>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={{ fontSize: typography.lg, fontWeight: '700', color: colors.foreground }}>Outline & Disabled</Text>
+        <View style={styles.row}>
+          <IconButton
+            icon={<Feather name="edit-2" size={24} />}
+            label="Outline"
+            variant="outline"
+            onPress={() => {}}
+          />
+          <IconButton
+            icon={<Feather name="trash-2" size={24} />}
+            label="Danger"
+            variant="danger"
+            onPress={() => {}}
+          />
+          <IconButton
+            icon={<Feather name="lock" size={24} />}
+            label="Disabled"
+            disabled
+            onPress={() => {}}
+          />
+        </View>
+      </View>
+
+      <View style={styles.section}>
         <Text style={{ fontSize: typography.lg, fontWeight: '700', color: colors.foreground }}>Variations</Text>
         <View style={styles.row}>
           <IconButton

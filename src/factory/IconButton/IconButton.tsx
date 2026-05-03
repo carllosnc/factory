@@ -18,7 +18,7 @@ import {
   RoundedRect,
 } from "@shopify/react-native-skia";
 import * as Haptics from 'expo-haptics';
-import { styles as createStyles, BUTTON_SCALE_VALUE, ANIMATION_DURATION } from './IconButton.styles';
+import { styles as createStyles, BUTTON_SCALE_VALUE, ANIMATION_DURATION, iconButtonSizes, IconButtonSize } from './IconButton.styles';
 import { useTheme } from '../ThemeContext';
 import { Text } from '../Text/Text';
 import { colors as baseColors } from '../factory';
@@ -28,11 +28,14 @@ interface IconButtonProps {
   label?: string;
   badge?: number | boolean;
   onPress?: () => void;
-  variant?: 'primary' | 'success' | 'error' | 'base' | 'info' | 'danger';
+  variant?: 'primary' | 'success' | 'error' | 'base' | 'info' | 'danger' | 'outline';
+  size?: IconButtonSize;
   style?: StyleProp<ViewStyle>;
   containerStyle?: StyleProp<ViewStyle>;
   labelStyle?: StyleProp<TextStyle>;
   haptic?: boolean;
+  disabled?: boolean;
+  loading?: boolean;
 }
 
 const AnimatedView = Animated.createAnimatedComponent(View);
@@ -43,15 +46,22 @@ export const IconButton = ({
   badge,
   onPress,
   variant = 'base',
+  size = 'md',
   style,
   containerStyle,
   labelStyle,
   haptic = true,
+  disabled = false,
+  loading = false,
 }: IconButtonProps) => {
   const { colors, isDark } = useTheme();
   const styles = useMemo(() => createStyles(colors), [colors]);
   const [layout, setLayout] = useState({ width: 0, height: 0 });
   const scale = useSharedValue(1);
+
+  const sizeConfig = iconButtonSizes[size];
+  const radius = sizeConfig.borderRadius;
+  const isOutline = variant === 'outline';
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }],
@@ -63,6 +73,7 @@ export const IconButton = ({
   };
 
   const handlePressIn = () => {
+    if (disabled || loading) return;
     scale.value = withTiming(BUTTON_SCALE_VALUE, { duration: ANIMATION_DURATION.SCALE });
     if (haptic) {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -74,6 +85,7 @@ export const IconButton = ({
   };
 
   const variantColor = useMemo(() => {
+    if (isOutline) return 'transparent';
     switch (variant) {
       case 'success':
         return isDark ? baseColors.success.t900 : baseColors.success.t600;
@@ -88,17 +100,19 @@ export const IconButton = ({
       default:
         return isDark ? baseColors.primary.t500 : baseColors.primary.t600;
     }
-  }, [variant, isDark]);
+  }, [variant, isDark, isOutline]);
+
+  const textColor = isOutline ? colors.primary : 'white';
 
   const renderBadge = () => {
-    if (!badge) return null;
+    if (!badge || loading) return null;
 
     if (typeof badge === 'number') {
       const isMultiChar = badge > 9;
       return (
         <View style={[
           styles.badge,
-          isMultiChar && { borderRadius: 8, paddingHorizontal: 6 }
+          isMultiChar && { borderRadius: 10, paddingHorizontal: 4 }
         ]}>
           <Text style={styles.badgeText}>{badge > 99 ? '99+' : badge}</Text>
         </View>
@@ -112,8 +126,6 @@ export const IconButton = ({
     return null;
   };
 
-  const radius = 16; // Matches styles.container.borderRadius
-
   return (
     <View style={[styles.root, style]}>
       <Pressable
@@ -121,10 +133,25 @@ export const IconButton = ({
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
         onLayout={onLayout}
-        style={[styles.container, containerStyle]}
+        disabled={disabled || loading}
+        style={[
+          styles.container,
+          {
+            width: sizeConfig.size,
+            height: sizeConfig.size,
+            borderRadius: radius,
+          },
+          isOutline && {
+            borderWidth: 1.5,
+            borderColor: colors.border,
+            backgroundColor: 'transparent',
+          },
+          disabled && { opacity: 0.5 },
+          containerStyle
+        ]}
       >
-        <AnimatedView style={[styles.inner, animatedStyle]}>
-          {layout.width > 0 && (
+        <AnimatedView style={[styles.inner, { borderRadius: radius }, animatedStyle]}>
+          {!isOutline && layout.width > 0 && (
             <Canvas style={[StyleSheet.absoluteFill, { borderRadius: radius }]}>
               <RoundedRect
                 x={0}
@@ -139,7 +166,8 @@ export const IconButton = ({
           <View style={styles.iconContainer}>
             {React.isValidElement(icon)
               ? React.cloneElement(icon as React.ReactElement<any>, {
-                  color: 'white' // Icons in solid buttons should be white
+                  size: sizeConfig.iconSize,
+                  color: textColor
                 })
               : icon}
           </View>
