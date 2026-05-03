@@ -60,6 +60,7 @@ export const uiColors = {
   theme: {
     background: colors.base.t200,
     foreground: colors.base.t800,
+    foregroundInverted: colors.base.t50,
     surfaceLight: colors.base.t50,
     surface: colors.base.t100,
     surfaceVariant: colors.base.t300,
@@ -76,6 +77,7 @@ export const uiColors = {
   dark: {
     background: colors.base.t900,
     foreground: colors.base.t50,
+    foregroundInverted: colors.base.t500,
     surfaceLight: colors.base.t900,
     surface: colors.base.t800,
     surfaceVariant: colors.base.t700,
