@@ -67,7 +67,7 @@ export const Toast = memo((props: ToastProps) => {
         onLayout={onLayout}
       >
         <View style={styles.iconContainer}>
-          <Ionicons name={theme.icon} size={24} color={theme.iconColor} />
+          <Ionicons name={theme.icon} size={18} color={theme.iconColor} />
         </View>
         <View style={styles.textContainer}>
           <Text style={[styles.title, { color: theme.textColor }]}>{props.title}</Text>

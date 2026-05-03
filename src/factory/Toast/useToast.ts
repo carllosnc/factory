@@ -8,6 +8,7 @@ import {
   Easing,
 } from 'react-native-reanimated';
 import { useTheme } from '../ThemeContext';
+import { colors as tokens } from '../factory';
 
 export type ToastVariant = 'success' | 'error' | 'message' | 'info' | 'normal';
 
@@ -136,32 +137,32 @@ export const useToastItem = ({
     switch (displayVariant) {
       case 'success':
         baseTheme = {
-          backgroundColor: isDark ? '#064e3b' : '#059669',
+          backgroundColor: isDark ? tokens.success.t900 : tokens.success.t600,
           icon: 'checkmark-circle' as const,
-          iconColor: '#FFFFFF',
-          textColor: '#FFFFFF',
-          secondaryTextColor: 'rgba(255,255,255,0.8)',
+          iconColor: tokens.base.t50,
+          textColor: tokens.base.t50,
+          secondaryTextColor: `${tokens.base.t50}CC`,
           strokeColor: 'rgba(255,255,255,0.2)',
         };
         break;
       case 'error':
         baseTheme = {
-          backgroundColor: isDark ? '#7f1d1d' : '#e11d48',
+          backgroundColor: isDark ? tokens.error.t900 : tokens.error.t600,
           icon: 'alert-circle' as const,
-          iconColor: '#FFFFFF',
-          textColor: '#FFFFFF',
-          secondaryTextColor: 'rgba(255,255,255,0.8)',
+          iconColor: tokens.base.t50,
+          textColor: tokens.base.t50,
+          secondaryTextColor: `${tokens.base.t50}CC`,
           strokeColor: 'rgba(255,255,255,0.2)',
         };
         break;
       case 'info':
       case 'message':
         baseTheme = {
-          backgroundColor: isDark ? '#1e3a8a' : '#2563eb',
+          backgroundColor: isDark ? tokens.primary.t900 : tokens.primary.t600,
           icon: 'information-circle' as const,
-          iconColor: '#FFFFFF',
-          textColor: '#FFFFFF',
-          secondaryTextColor: 'rgba(255,255,255,0.8)',
+          iconColor: tokens.base.t50,
+          textColor: tokens.base.t50,
+          secondaryTextColor: `${tokens.base.t50}CC`,
           strokeColor: 'rgba(255,255,255,0.2)',
         };
         break;
