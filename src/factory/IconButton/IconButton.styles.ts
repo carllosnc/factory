@@ -68,11 +68,3 @@ export const ANIMATION_DURATION = {
 };
 
 export const BUTTON_SCALE_VALUE = 0.95;
-
-export const SHADOW_COLOR = "rgba(255, 255, 255, 0.5)";
-
-export const getVariantColors = (variant: 'primary' | 'success' | 'error' | 'base', isDark: boolean) => {
-  // In a real app, these would probably also come from theme tokens
-  // For now, we'll keep them somewhat static but aware of the variant
-  return []; // This will be handled in the component for now or refactored
-};
