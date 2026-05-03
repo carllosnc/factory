@@ -1,21 +1,37 @@
 import { StyleSheet } from 'react-native';
 import { spacing, ThemeColors } from '../factory';
 
+export const iconButtonSizes = {
+  sm: {
+    size: 40,
+    iconSize: 18,
+    borderRadius: 12,
+  },
+  md: {
+    size: 56,
+    iconSize: 24,
+    borderRadius: 16,
+  },
+  lg: {
+    size: 64,
+    iconSize: 28,
+    borderRadius: 20,
+  },
+} as const;
+
+export type IconButtonSize = keyof typeof iconButtonSizes;
+
 export const styles = (colors: ThemeColors) => StyleSheet.create({
   root: {
     alignItems: 'center',
     justifyContent: 'center',
   },
   container: {
-    width: 56,
-    height: 56,
-    borderRadius: 16,
     position: 'relative',
   },
   inner: {
     flex: 1,
     overflow: 'hidden',
-    borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -31,14 +47,14 @@ export const styles = (colors: ThemeColors) => StyleSheet.create({
   },
   badge: {
     position: 'absolute',
-    top: -6,
-    right: -6,
+    top: -4,
+    right: -4,
     backgroundColor: colors.error,
-    minWidth: 22,
-    height: 22,
-    borderRadius: 11,
-    borderWidth: 1,
-    borderColor: colors.surface,
+    minWidth: 20,
+    height: 20,
+    borderRadius: 10,
+    borderWidth: 1.5,
+    borderColor: colors.background,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 2,
@@ -46,19 +62,19 @@ export const styles = (colors: ThemeColors) => StyleSheet.create({
   },
   dotBadge: {
     position: 'absolute',
-    top: -4,
-    right: -4,
+    top: -2,
+    right: -2,
     backgroundColor: colors.error,
-    width: 18,
-    height: 18,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: colors.surface,
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    borderWidth: 1.5,
+    borderColor: colors.background,
     zIndex: 10,
   },
   badgeText: {
     color: 'white',
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: 'bold',
   },
 });
