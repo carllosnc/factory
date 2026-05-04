@@ -73,7 +73,7 @@ export const styles = (colors: ThemeColors) => StyleSheet.create({
     zIndex: 10,
   },
   badgeText: {
-    color: 'white',
+    color: colors.foregroundInverted,
     fontSize: 10,
     fontWeight: 'bold',
   },
