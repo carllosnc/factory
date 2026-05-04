@@ -19,6 +19,7 @@ import { BottomSheetScreen } from './src/screens/BottomSheetScreen';
 import { DrawerScreen } from './src/screens/DrawerScreen';
 import { AccordionScreen } from './src/screens/AccordionScreen';
 import { ToastScreen } from './src/screens/ToastScreen';
+import { ModalScreen } from './src/screens/ModalScreen';
 import { customTransitionSpec, customIOSInterpolator, ThemeProvider, ToastProvider } from './src/factory';
 
 const Stack = createStackNavigator();
@@ -58,7 +59,9 @@ export default function App() {
               <Stack.Screen name="Drawer" component={DrawerScreen} />
               <Stack.Screen name="Accordions" component={AccordionScreen} />
               <Stack.Screen name="Toasts" component={ToastScreen} />
+              <Stack.Screen name="Modal" component={ModalScreen} />
             </Stack.Navigator>
+
           </NavigationContainer>
         </ToastProvider>
       </ThemeProvider>

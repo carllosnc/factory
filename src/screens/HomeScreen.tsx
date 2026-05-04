@@ -22,6 +22,7 @@ type RootStackParamList = {
   Drawer: undefined;
   Accordions: undefined;
   Toasts: undefined;
+  Modal: undefined;
 };
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
@@ -178,7 +179,17 @@ export const HomeScreen = () => {
           rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
           iconWrapper
           onPress={() => navigation.navigate('Toasts')}
+          divider
         />
+        <ListTile
+          title="Modal"
+          subtitle="Centered overlay dialogs"
+          leftIcon={<Feather name="maximize" size={18} color={colors.foreground} />}
+          rightIcon={<Feather name="chevron-right" size={18} color={colors.muted} />}
+          iconWrapper
+          onPress={() => navigation.navigate('Modal')}
+        />
+
       </ListTileGroup>
     </Page>
   );
