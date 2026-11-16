@@ -77,7 +77,7 @@ export const Tabs = ({
   };
 
   return (
-    <View style={styles.container} onLayout={onLayout}>
+    <View style={styles.container} onLayout={onLayout} accessibilityRole="tablist">
       {containerWidth > 0 && (
         <Animated.View style={[styles.indicator, indicatorStyle]} />
       )}
@@ -86,6 +86,8 @@ export const Tabs = ({
           key={tab}
           style={styles.tab}
           onPress={() => handlePress(index)}
+          accessibilityRole="tab"
+          accessibilityState={{ selected: activeTab === index }}
         >
           <Text
             style={[
