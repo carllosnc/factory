@@ -108,6 +108,9 @@ export const Button = ({
       onPressOut={handlePressOut}
       onLayout={onLayout}
       disabled={disabled || loading}
+      accessibilityRole="button"
+      accessibilityLabel={title}
+      accessibilityState={{ disabled: disabled || loading, busy: loading }}
       style={[
         styles.container,
         {
