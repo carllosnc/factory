@@ -129,6 +129,9 @@ export const Accordion = ({
       <Pressable
         onPress={toggle}
         disabled={disabled}
+        accessibilityRole="button"
+        accessibilityLabel={title}
+        accessibilityState={{ expanded, disabled }}
         style={({ pressed }) => [
           styles.header,
           pressed && { opacity: 0.7 },
