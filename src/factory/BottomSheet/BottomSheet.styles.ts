@@ -5,7 +5,7 @@ const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 export const createStyles = (colors: ThemeColors) => StyleSheet.create({
   overlay: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
     zIndex: 1000,
   },
