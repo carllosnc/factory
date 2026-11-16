@@ -33,7 +33,7 @@ export const useModal = ({ isOpen, onClose }: UseModalProps) => {
       setVisible(true);
       translateY.value = withTiming(0, { duration: 200 });
       opacity.value = withTiming(1, { duration: 200 });
-    } else {
+    } else if (visible) {
       closeModal();
     }
   }, [isOpen]);
