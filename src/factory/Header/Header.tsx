@@ -20,7 +20,6 @@ interface HeaderProps {
   activeTab?: string;
   onTabPress?: (tab: string) => void;
   statusBarStyle?: 'light' | 'dark' | 'auto' | 'inverted';
-  statusBarTranslucent?: boolean;
 }
 
 export const Header = ({
@@ -31,7 +30,6 @@ export const Header = ({
   activeTab,
   onTabPress,
   statusBarStyle = 'auto',
-  statusBarTranslucent = true,
 }: HeaderProps) => {
   const { colors } = useTheme();
   const styles = useMemo(() => createStyles(colors), [colors]);
@@ -39,7 +37,7 @@ export const Header = ({
 
   return (
     <View style={styles.container} onLayout={onLayout}>
-      <StatusBar style={statusBarStyle} translucent={statusBarTranslucent} />
+      <StatusBar style={statusBarStyle} />
       <View style={styles.inner}>
         <View style={styles.topSection}>
           <View style={styles.titleContainer}>
@@ -47,6 +45,8 @@ export const Header = ({
               <Pressable
                 onPress={onBackPress}
                 testID="header-back-button"
+                accessibilityRole="button"
+                accessibilityLabel="Back"
                 style={({ pressed }) => [
                   styles.backButton,
                   { opacity: pressed ? 0.7 : 1 }
@@ -90,6 +90,8 @@ export const Header = ({
                   key={tab}
                   onPress={() => onTabPress?.(tab)}
                   testID={`tab-${tab}`}
+                  accessibilityRole="tab"
+                  accessibilityState={{ selected: activeTab === tab }}
                   onLayout={(e) => {
                     onTabLayout(tab, e.nativeEvent.layout.x, e.nativeEvent.layout.width);
                   }}
