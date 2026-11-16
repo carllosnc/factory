@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, useWindowDimensions } from 'react-native';
 import { styles } from './Toast.styles';
 import { Ionicons } from '@expo/vector-icons';
 import {
@@ -19,9 +19,6 @@ import {
 export type { ToastVariant, ToastOptions };
 export { useToast };
 
-const { width } = Dimensions.get('window');
-const TOAST_WIDTH = width - 40;
-
 interface ToastProps extends ToastOptions {
   id: string;
   index?: number;
@@ -30,6 +27,8 @@ interface ToastProps extends ToastOptions {
 }
 
 export const Toast = memo((props: ToastProps) => {
+  const { width } = useWindowDimensions();
+  const toastWidth = Math.max(0, width - 40);
   const {
     contentHeight,
     animatedStyle,
@@ -39,12 +38,16 @@ export const Toast = memo((props: ToastProps) => {
   } = useToastItem(props);
 
   return (
-    <Animated.View style={[styles.toastContainer, animatedStyle]}>
+    <Animated.View
+      style={[styles.toastContainer, animatedStyle]}
+      accessibilityRole="alert"
+      accessibilityLiveRegion="polite"
+    >
       <Canvas style={styles.canvas}>
         <RoundedRect
           x={0}
           y={0}
-          width={TOAST_WIDTH}
+          width={toastWidth}
           height={contentHeight}
           r={16}
           color={theme.backgroundColor}
@@ -53,7 +56,7 @@ export const Toast = memo((props: ToastProps) => {
         <RoundedRect
           x={0.5}
           y={0.5}
-          width={TOAST_WIDTH - 1}
+          width={toastWidth - 1}
           height={contentHeight - 1}
           r={16}
           color={theme.strokeColor}
