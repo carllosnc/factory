@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import {
   Canvas,
   Line,
@@ -12,6 +12,7 @@ import Animated, {
   withTiming,
   Easing,
   useDerivedValue,
+  type SharedValue,
 } from 'react-native-reanimated';
 import { useTheme } from '../ThemeContext';
 
@@ -20,6 +21,53 @@ interface SpinnerProps {
   color?: string;
   spokes?: number;
 }
+
+interface SpinnerSpokeProps {
+  index: number;
+  spokes: number;
+  center: number;
+  innerRadius: number;
+  spokeLength: number;
+  spokeWidth: number;
+  spinnerColor: string;
+  progress: SharedValue<number>;
+}
+
+const SpinnerSpoke = ({
+  index,
+  spokes,
+  center,
+  innerRadius,
+  spokeLength,
+  spokeWidth,
+  spinnerColor,
+  progress,
+}: SpinnerSpokeProps) => {
+  const angle = index * (360 / spokes);
+
+  const opacity = useDerivedValue(() => {
+    const activeSpoke = Math.floor(progress.value * spokes);
+    const distance = (index - activeSpoke + spokes) % spokes;
+    return Math.max(0.1, 1 - (distance / (spokes * 0.75)));
+  });
+
+  return (
+    <Group
+      origin={vec(center, center)}
+      transform={[{ rotate: (angle * Math.PI) / 180 }]}
+    >
+      <Line
+        p1={vec(center, center - innerRadius)}
+        p2={vec(center, center - innerRadius - spokeLength)}
+        color={spinnerColor}
+        style="stroke"
+        strokeWidth={spokeWidth}
+        strokeCap="round"
+        opacity={opacity}
+      />
+    </Group>
+  );
+};
 
 export const Spinner = ({
   size = 32,
@@ -46,48 +94,28 @@ export const Spinner = ({
   const spokeWidth = size * 0.07;
   const innerRadius = size * 0.25;
 
-  const renderSpokes = () => {
-    return Array.from({ length: spokes }).map((_, index) => {
-      const angle = (index * (360 / spokes));
-
-      const opacity = useDerivedValue(() => {
-        const activeSpoke = Math.floor(progress.value * spokes);
-        const distance = (index - activeSpoke + spokes) % spokes;
-        return Math.max(0.1, 1 - (distance / (spokes * 0.75)));
-      });
-
-      return (
-        <Group
-          key={index}
-          origin={vec(center, center)}
-          transform={[{ rotate: (angle * Math.PI) / 180 }]}
-        >
-          <Line
-            p1={vec(center, center - innerRadius)}
-            p2={vec(center, center - innerRadius - spokeLength)}
-            color={spinnerColor}
-            style="stroke"
-            strokeWidth={spokeWidth}
-            strokeCap="round"
-            opacity={opacity}
-          />
-        </Group>
-      );
-    });
-  };
-
   return (
-    <View style={{ width: size, height: size }}>
+    <View
+      style={{ width: size, height: size }}
+      accessible
+      accessibilityRole="progressbar"
+      accessibilityLabel="Loading"
+    >
       <Canvas style={{ flex: 1 }}>
-        {renderSpokes()}
+        {Array.from({ length: spokes }).map((_, index) => (
+          <SpinnerSpoke
+            key={index}
+            index={index}
+            spokes={spokes}
+            center={center}
+            innerRadius={innerRadius}
+            spokeLength={spokeLength}
+            spokeWidth={spokeWidth}
+            spinnerColor={spinnerColor}
+            progress={progress}
+          />
+        ))}
       </Canvas>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
