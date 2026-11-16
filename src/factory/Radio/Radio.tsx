@@ -74,6 +74,9 @@ export const Radio = ({
       onPress={handlePress}
       disabled={disabled}
       testID="radio-tile"
+      accessibilityRole="radio"
+      accessibilityLabel={title}
+      accessibilityState={{ selected, disabled }}
     >
       {({ pressed }) => (
         <View
