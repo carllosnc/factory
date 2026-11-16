@@ -83,6 +83,9 @@ export const Checkbox = ({
       onPress={handlePress}
       disabled={disabled}
       testID="checkbox-tile"
+      accessibilityRole="checkbox"
+      accessibilityLabel={title}
+      accessibilityState={{ checked, disabled }}
     >
       {({ pressed }) => (
         <View
