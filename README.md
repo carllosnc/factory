@@ -23,9 +23,9 @@ Factory is a premium UI component library for React Native, designed for high-pe
 
 The library includes a comprehensive set of building blocks:
 
-- Navigation: BottomBar, Tabs, Custom Page transitions.
-- Layout: Header, Divider, ListTile.
-- Feedback: BottomSheet, Typography.
+- Navigation: BottomBar, Drawer, Tabs, Custom Page transitions.
+- Layout: Accordion, Header, Divider, ListTile.
+- Feedback: BottomSheet, Modal, Spinner, Toast, Typography.
 - Controls: Button, IconButton, Slider, Switch, Radio, Checkbox, Input.
 
 ## Getting Started
