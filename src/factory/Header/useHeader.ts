@@ -1,9 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, type ComponentRef } from 'react';
 import { ScrollView, LayoutChangeEvent } from 'react-native';
 
 export const useHeader = (activeTab?: string) => {
   const [layout, setLayout] = useState({ width: 0, height: 0 });
-  const scrollViewRef = useRef<ScrollView>(null);
+  const scrollViewRef = useRef<ComponentRef<typeof ScrollView>>(null);
   const tabLayouts = useRef<Record<string, { x: number; width: number }>>({});
 
   useEffect(() => {
