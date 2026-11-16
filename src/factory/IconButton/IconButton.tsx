@@ -134,6 +134,9 @@ export const IconButton = ({
         onPressOut={handlePressOut}
         onLayout={onLayout}
         disabled={disabled || loading}
+        accessibilityRole="button"
+        accessibilityLabel={label}
+        accessibilityState={{ disabled: disabled || loading, busy: loading }}
         style={[
           styles.container,
           {
