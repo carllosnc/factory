@@ -39,16 +39,25 @@ jest.mock('react-native-reanimated', () => {
     useAnimatedStyle: (fn: any) => fn(),
     useDerivedValue: (fn: any) => ({ value: fn() }),
     interpolateColor: (val: any, input: any, output: any) => output[0],
+    interpolate: (val: any, input: any, output: any) => output[0],
     Extrapolation: {
       CLAMP: 'clamp',
     },
-    withTiming: (val: any) => val,
+    Extrapolate: {
+      CLAMP: 'clamp',
+    },
+    withTiming: (val: any, _config?: any, cb?: (finished: boolean) => void) => {
+      if (typeof cb === 'function') cb(true);
+      return val;
+    },
     withRepeat: (val: any) => val,
     withSpring: (val: any) => val,
+    runOnJS: (fn: any) => fn,
     Easing: {
       linear: (t: any) => t,
       out: (f: any) => f,
       in: (f: any) => f,
+      back: () => (t: any) => t,
     },
     createAnimatedComponent: (cb: any) => cb,
   };
@@ -62,6 +71,7 @@ jest.mock('@shopify/react-native-skia', () => {
     Canvas: ({ children, style }: any) => React.createElement(View, { style }, children),
     Rect: () => null,
     RoundedRect: () => null,
+    Line: () => null,
     LinearGradient: () => null,
     Group: ({ children }: any) => children,
     rect: (x: number, y: number, w: number, h: number) => ({ x, y, w, h }),
