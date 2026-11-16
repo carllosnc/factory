@@ -78,6 +78,9 @@ export const Switch = ({
       onPress={handlePress}
       disabled={disabled}
       testID="switch-tile"
+      accessibilityRole="switch"
+      accessibilityLabel={title}
+      accessibilityState={{ checked: value, disabled }}
     >
       {({ pressed }) => (
         <View
