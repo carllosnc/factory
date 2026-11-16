@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     right: 20,
   },
   canvas: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
   },
   content: {
     flexDirection: 'row',
